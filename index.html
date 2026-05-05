@@ -248,9 +248,11 @@ footer {
   header { padding: 14px 16px; }
   .hero, main, .index-section { padding-left: 16px; padding-right: 16px; }
   nav { display: none; }
+  .progress-bar-wrap { padding: 8px 16px; }
+  .theory-section, .quiz-section, .ai-tutor-section { padding-left: 16px; padding-right: 16px; }
+  .quiz-opts { grid-template-columns: 1fr; }
 }
 
-/* PROGRESS BAR */
 .progress-bar-wrap {
   background: var(--surface2); border-bottom: 1px solid var(--border);
   padding: 10px 40px; display: flex; align-items: center; gap: 16px;
@@ -351,11 +353,7 @@ footer {
 .ai-sug { font-size: 11px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-family: 'JetBrains Mono', monospace; color: var(--muted); transition: all .15s; }
 .ai-sug:hover { border-color: var(--accent); color: var(--accent); }
 
-@media (max-width: 600px) {
-  .progress-bar-wrap { padding: 8px 16px; }
-  .theory-section, .quiz-section, .ai-tutor-section { padding-left: 16px; padding-right: 16px; }
-  .quiz-opts { grid-template-columns: 1fr; }
-}
+
 </style>
 </head>
 <body>
@@ -386,7 +384,7 @@ footer {
   <span class="progress-label">Progreso de estudio</span>
   <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
   <span class="progress-pct" id="progress-pct">0%</span>
-
+</div>
 
 <div class="hero">
   <div class="hero-tag">Universidad de Burgos · EDA</div>
