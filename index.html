@@ -312,6 +312,7 @@ footer {
 
     <!-- Árbol inicial SVG -->
     <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">El recorrido por niveles se lee fila a fila de arriba abajo. Así queda el árbol:</p>
+    <div class="warn-box" style="font-size:12px;margin-bottom:8px">⚠️ <strong>¡Atención!</strong> El nodo <strong>8 es hijo DERECHO del 3</strong> (no izquierdo), porque 8 &gt; 3. El nodo 3 no tiene hijo izquierdo en este árbol. Esto se refleja visualmente a continuación (nodo naranja a la derecha del 3).</div>
     <div class="tree-wrap">
       <svg class="tree" width="680" height="330" viewBox="0 0 680 330">
         <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#aaaacc" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
@@ -322,7 +323,8 @@ footer {
         <line x1="190" y1="140" x2="275" y2="200" stroke="#aaaacc" stroke-width="1.5"/>
         <line x1="490" y1="140" x2="415" y2="200" stroke="#aaaacc" stroke-width="1.5"/>
         <line x1="490" y1="140" x2="565" y2="200" stroke="#aaaacc" stroke-width="1.5"/>
-        <line x1="105" y1="220" x2="60" y2="270" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- 3 → 8 es hijo DERECHO (8 > 3), va a la derecha de cx=105 -->
+        <line x1="105" y1="220" x2="148" y2="270" stroke="#aaaacc" stroke-width="1.5"/>
         <line x1="275" y1="220" x2="225" y2="270" stroke="#aaaacc" stroke-width="1.5"/>
         <line x1="275" y1="220" x2="315" y2="270" stroke="#aaaacc" stroke-width="1.5"/>
         <line x1="565" y1="220" x2="528" y2="270" stroke="#aaaacc" stroke-width="1.5"/>
@@ -343,8 +345,11 @@ footer {
         <text x="415" y="210" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e">67</text>
         <circle cx="565" cy="210" r="22" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
         <text x="565" y="210" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e">82</text>
-        <circle cx="60" cy="280" r="20" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.5"/>
-        <text x="60" y="280" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#6b6b8a">8</text>
+        <!-- 8 es hijo DERECHO de 3: cx=148 (a la derecha de cx=105) -->
+        <circle cx="148" cy="280" r="20" fill="#f0f0fa" stroke="#d4762a" stroke-width="1.5"/>
+        <text x="148" y="280" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#a85a18">8</text>
+        <!-- etiqueta aclaratoria -->
+        <text x="173" y="277" font-size="9" fill="#d4762a" font-family="JetBrains Mono,monospace">(hijo der.)</text>
         <circle cx="225" cy="280" r="20" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.5"/>
         <text x="225" y="280" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#6b6b8a">16</text>
         <circle cx="315" cy="280" r="20" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.5"/>
@@ -377,47 +382,167 @@ footer {
     </div>
 
     <!-- Parte 2 -->
-    <div class="section-label" style="margin:24px 0 12px">Parte 2 — Insertar 47, 73, 54</div>
+    <div class="section-label" style="margin:24px 0 12px">Parte 2 — Insertar 47, 73, 54 (sobre el árbol inicial)</div>
     <div class="step-list">
       <div class="step">
         <div class="step-icon">1</div>
         <div class="step-content">
           <h4>Insertar 47</h4>
-          <p>47 es menor que 59 → izquierda. Menor que 21 → derecha de 21. Mayor que 40 → hijo derecho de 40 (o derecho de 51, menor que 51). Queda como hijo derecho de 40.<br>
-          Revisando FE (Factor de Equilibrio = altura_izq − altura_der): el nodo 21 queda con FE = −2 (subárbol derecho más pesado, y ese subárbol tiene el peso a la derecha → <code>Rotación simple izquierda</code> en 21). 51 sube como padre de 21, 21 pasa a hijo izquierdo de 51.</p>
+          <p><strong>Ruta de inserción:</strong> 47 &lt; 59 → izq → 47 &gt; 15 → der → 47 &gt; 21 → der → 47 &lt; 51 → izq → 47 &gt; 40 → der. Se inserta como <strong>hijo derecho de 40</strong>.</p>
+          <p style="margin-top:6px"><strong>Revisión de FE (Factor de Equilibrio = h_izq − h_der) hacia arriba:</strong><br>
+          FE(51) = 1−0 = +1 ✓<br>
+          FE(21) = 0−2 = <strong>−2 ❌ desequilibrio</strong>. El hijo derecho (51) tiene peso hacia su derecha → caso <strong>derecha-derecha (RR) → Rotación simple izquierda en 21</strong>.<br>
+          <code>51 sube: hijo izq de 51 = 21; hijo der de 51 = 47 (era hijo der de 40). 40 queda hijo izq de 47.</code><br>
+          Árbol reequilibrado: FE(51)=0, FE(15)=−1 ✓</p>
+          <!-- Mini árbol tras insertar 47 -->
+          <div class="tree-wrap" style="margin-top:10px">
+          <svg class="tree" width="420" height="210" viewBox="0 0 420 210">
+            <!-- edges -->
+            <line x1="210" y1="30" x2="100" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="210" y1="30" x2="320" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="100" y1="95" x2="50" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="100" y1="95" x2="170" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="170" y1="160" x2="120" y2="195" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="170" y1="160" x2="220" y2="195" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="120" y1="195" x2="120" y2="195" stroke="none"/>
+            <!-- 59 -->
+            <circle cx="210" cy="30" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+            <text x="210" y="30" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">59</text>
+            <!-- 15 -->
+            <circle cx="100" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="100" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">15</text>
+            <!-- 3 -->
+            <circle cx="50" cy="153" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+            <text x="50" y="153" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#1a1a2e">3</text>
+            <!-- 51 (sube) -->
+            <circle cx="170" cy="153" r="18" fill="#1a9e72" stroke="#157a57" stroke-width="1.5"/>
+            <text x="170" y="153" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">51</text>
+            <!-- 21 -->
+            <circle cx="120" cy="195" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+            <text x="120" y="195" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#1a1a2e">21</text>
+            <!-- 47 nuevo -->
+            <circle cx="220" cy="195" r="16" fill="#d4762a" stroke="#8a4a0a" stroke-width="1.5"/>
+            <text x="220" y="195" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#fff">47</text>
+            <!-- 68 -->
+            <circle cx="320" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="320" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">68</text>
+            <!-- leyenda -->
+            <circle cx="20" cy="195" r="6" fill="#1a9e72" stroke="#157a57" stroke-width="1"/>
+            <text x="30" y="199" font-size="8" fill="#157a57" font-family="JetBrains Mono,monospace">rotado</text>
+            <circle cx="20" cy="207" r="6" fill="#d4762a" stroke="#8a4a0a" stroke-width="1"/>
+            <text x="30" y="211" font-size="8" fill="#8a4a0a" font-family="JetBrains Mono,monospace">nuevo</text>
+            <text x="260" y="140" font-size="9" fill="#aaaacc" font-family="JetBrains Mono,monospace">(resto del árbol</text>
+            <text x="260" y="152" font-size="9" fill="#aaaacc" font-family="JetBrains Mono,monospace">sin cambios)</text>
+          </svg></div>
         </div>
       </div>
+
       <div class="step">
         <div class="step-icon">2</div>
         <div class="step-content">
-          <h4>Insertar 73</h4>
-          <p>73 > 59 → derecha. 73 > 68 → derecha. 73 < 82 → izquierda de 82. 73 < 81 → izquierda de 81. FE de 82 pasa a +1. FE de 68 pasa a −1. Ninguno llega a ±2 → <code>Sin rotación</code>. Se inserta directamente.</p>
+          <h4>Insertar 73 (sobre árbol tras insertar 47)</h4>
+          <p><strong>Ruta:</strong> 73 &gt; 59 → der → 73 &gt; 68 → der → 73 &lt; 82 → izq → 73 &lt; 81 → izq. Se inserta como <strong>hijo izquierdo de 81</strong>.</p>
+          <p style="margin-top:6px"><strong>Revisión FE hacia arriba:</strong><br>
+          FE(81) = +1 ✓ | FE(82) = +2−1 = +1 ✓ | FE(68) = −1 ✓<br>
+          Ningún nodo llega a ±2 → <strong>Sin rotación</strong>. El árbol sigue equilibrado.</p>
         </div>
       </div>
+
       <div class="step">
         <div class="step-icon">3</div>
         <div class="step-content">
-          <h4>Insertar 54</h4>
-          <p>54 > 59? No → izquierda, llega a 51 → 54 > 51 → derecha de 51. El nodo 68 queda con FE = +2 (subárbol izquierdo muy pesado, y su hijo izq 67 tiene peso a la derecha: 54 < 67). Esto es un caso <code>izquierda-derecha (LR) → rotación doble</code>: primero rotación izquierda en 67, luego rotación derecha en 68. Resultado: 67 sube a hijo izquierdo de 68, 54 pasa a hijo derecho de 51.</p>
+          <h4>Insertar 54 (sobre árbol tras 47 y 73)</h4>
+          <p><strong>Ruta:</strong> 54 &lt; 59 → izq → 54 &gt; 15 → der → 54 &gt; 51 → der. Se inserta como <strong>hijo derecho de 51</strong>.</p>
+          <p style="margin-top:6px"><strong>Revisión FE hacia arriba:</strong><br>
+          FE(51) = 0−1 = −1 ✓ | FE(21 o su padre actual) se propaga…<br>
+          No se produce desequilibrio en este caso: FE(15) = −1−0→ se ajusta pero no supera ±2 con la estructura resultante de la inserción de 47.<br>
+          → <strong>Sin rotación</strong>. 54 se inserta directamente.</p>
         </div>
       </div>
     </div>
 
     <!-- Parte 3 -->
-    <div class="section-label" style="margin:24px 0 12px">Parte 3 — Eliminar 67 y 82 (del árbol INICIAL)</div>
+    <div class="section-label" style="margin:24px 0 12px">Parte 3 — Eliminar 67 y 82 (del árbol INICIAL, sin las inserciones)</div>
     <div class="step-list">
       <div class="step">
         <div class="step-icon">1</div>
         <div class="step-content">
           <h4>Eliminar 67</h4>
-          <p>El 67 es un <code>nodo hoja</code> (sin hijos). Se elimina directamente. El nodo 68 queda solo con hijo derecho (82), FE = −1. Válido, no hay rotación.</p>
+          <p><strong>Tipo de nodo:</strong> 67 es un <code>nodo hoja</code> (sin hijos). Se elimina directamente sin necesidad de sucesor.</p>
+          <p style="margin-top:6px"><strong>Revisión FE hacia arriba:</strong><br>
+          FE(68) = h_izq − h_der = 0 − 1 = <strong>−1</strong> ✓ (válido, no hay rotación).<br>
+          El árbol sigue siendo AVL.</p>
+          <!-- Mini árbol tras eliminar 67 -->
+          <div class="tree-wrap" style="margin-top:10px">
+          <svg class="tree" width="380" height="190" viewBox="0 0 380 190">
+            <line x1="190" y1="30" x2="90" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="190" y1="30" x2="290" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="290" y1="95" x2="350" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+            <!-- 59 -->
+            <circle cx="190" cy="30" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+            <text x="190" y="30" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">59</text>
+            <!-- 15 -->
+            <circle cx="90" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="90" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">15</text>
+            <text x="90" y="115" text-anchor="middle" font-size="8" fill="#aaaacc" font-family="JetBrains Mono,monospace">(sin cambios)</text>
+            <!-- 68 -->
+            <circle cx="290" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="290" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">68</text>
+            <text x="250" y="115" font-size="8" fill="#c03030" font-family="JetBrains Mono,monospace">FE=−1 ✓</text>
+            <!-- 67 tachado -->
+            <circle cx="235" cy="153" r="16" fill="#f5e0e0" stroke="#c03030" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="235" y="153" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#c03030">67✕</text>
+            <!-- 82 -->
+            <circle cx="350" cy="153" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+            <text x="350" y="153" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#1a1a2e">82</text>
+          </svg></div>
         </div>
       </div>
+
       <div class="step">
         <div class="step-icon">2</div>
         <div class="step-content">
-          <h4>Eliminar 82</h4>
-          <p>El 82 tiene <code>dos hijos</code> (81 y 98). Regla: se reemplaza por su <strong>sucesor inorden</strong> = el nodo más pequeño del subárbol derecho = <code>98</code>. El 98 sube a la posición de 82, el 81 queda como hijo izquierdo del 98. FE(68) = −1. Válido, sin rotación.</p>
+          <h4>Eliminar 82 (del árbol inicial, 67 todavía presente)</h4>
+          <p><strong>Tipo de nodo:</strong> 82 tiene <code>dos hijos</code> (81 izq, 98 der). Se aplica la regla del <strong>sucesor inorden</strong> (el mínimo del subárbol derecho).</p>
+          <p style="margin-top:6px">Sucesor inorden de 82 = nodo más pequeño del subárbol derecho = <strong>98</strong> (único hijo derecho, sin hijos propios).<br>
+          → Se copia el valor 98 en la posición de 82, y se elimina el nodo hoja 98.<br>
+          Resultado: donde había 82 ahora hay <strong>98</strong>, con hijo izquierdo 81.</p>
+          <p style="margin-top:6px"><strong>Revisión FE:</strong><br>
+          FE(98_nuevo) = 1 − 0 = +1 ✓ | FE(68) = h_izq − h_der: con 67 y el nuevo 98 → FE = 0 ✓<br>
+          → <strong>Sin rotación</strong>. Árbol AVL válido.</p>
+          <!-- Mini árbol tras eliminar 82 -->
+          <div class="tree-wrap" style="margin-top:10px">
+          <svg class="tree" width="380" height="210" viewBox="0 0 380 210">
+            <line x1="190" y1="30" x2="90" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="190" y1="30" x2="290" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="290" y1="95" x2="240" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="290" y1="95" x2="345" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+            <line x1="345" y1="160" x2="315" y2="195" stroke="#aaaacc" stroke-width="1.5"/>
+            <!-- 59 -->
+            <circle cx="190" cy="30" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+            <text x="190" y="30" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">59</text>
+            <!-- 15 -->
+            <circle cx="90" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="90" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">15</text>
+            <text x="90" y="112" text-anchor="middle" font-size="8" fill="#aaaacc" font-family="JetBrains Mono,monospace">(sin cambios)</text>
+            <!-- 68 -->
+            <circle cx="290" cy="88" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+            <text x="290" y="88" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#3d2db8">68</text>
+            <text x="255" y="114" font-size="8" fill="#1a9e72" font-family="JetBrains Mono,monospace">FE=0 ✓</text>
+            <!-- 67 -->
+            <circle cx="240" cy="153" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+            <text x="240" y="153" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#1a1a2e">67</text>
+            <!-- 98 (sucesor, reemplaza a 82) -->
+            <circle cx="345" cy="153" r="18" fill="#1a9e72" stroke="#157a57" stroke-width="1.5"/>
+            <text x="345" y="153" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">98</text>
+            <text x="322" y="178" font-size="8" fill="#1a9e72" font-family="JetBrains Mono,monospace">sucesor</text>
+            <!-- 81 -->
+            <circle cx="315" cy="197" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+            <text x="315" y="197" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#1a1a2e">81</text>
+            <!-- 82 tachado -->
+            <circle cx="390" cy="153" r="16" fill="#f5e0e0" stroke="#c03030" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="390" y="153" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#c03030">82✕</text>
+          </svg></div>
         </div>
       </div>
     </div>
@@ -668,26 +793,30 @@ footer {
     <div class="dp-table-wrap"><table class="dp">
       <tr><th>Obj\Cap</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
       <tr><th>0</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><th>1(p3,v15)</th><td>0</td><td>0</td><td>0</td><td class="upd">15</td><td>15</td><td>15</td><td class="upd">30</td><td>30</td><td>30</td><td class="upd">45</td><td>45</td></tr>
-      <tr><th>2(p4,v16)</th><td>0</td><td>0</td><td>0</td><td>15</td><td class="upd">16</td><td>16</td><td>30</td><td class="upd">31</td><td class="upd">31</td><td>45</td><td class="upd">46</td></tr>
-      <tr><th>3(p1,v13)</th><td>0</td><td class="upd">13</td><td>13</td><td>15</td><td class="upd">28</td><td class="upd">29</td><td>30</td><td class="upd">43</td><td class="upd">44</td><td>45</td><td class="upd">58</td></tr>
-      <tr><th>4(p3,v15)</th><td>0</td><td>13</td><td>13</td><td>15</td><td>28</td><td>29</td><td>30</td><td>43</td><td class="upd">44</td><td class="upd">46</td><td class="sel">59</td></tr>
+      <tr><th>1(p3,v15)</th><td>0</td><td>0</td><td>0</td><td class="upd">15</td><td>15</td><td>15</td><td>15</td><td class="upd">15</td><td>15</td><td>15</td><td>15</td></tr>
+      <tr><th>2(p4,v16)</th><td>0</td><td>0</td><td>0</td><td>15</td><td class="upd">16</td><td>16</td><td>16</td><td class="upd">31</td><td>31</td><td>31</td><td class="upd">31</td></tr>
+      <tr><th>3(p1,v13)</th><td>0</td><td class="upd">13</td><td>13</td><td>15</td><td class="upd">28</td><td class="upd">29</td><td>29</td><td class="upd">31</td><td class="upd">44</td><td class="upd">44</td><td class="upd">44</td></tr>
+      <tr><th>4(p3,v15)</th><td>0</td><td>13</td><td>13</td><td>15</td><td>28</td><td>29</td><td class="upd">30</td><td>31</td><td>44</td><td class="upd">46</td><td class="sel">46</td></tr>
     </table></div>
+    <div class="warn-box" style="font-size:12px;margin-top:10px"><strong>Nota:</strong> En mochila 0/1 cada objeto se usa <em>como máximo una vez</em>. Al construir la fila i, se toma M[i-1][w] (sin el objeto i) y M[i-1][w-peso_i] + val_i (añadiendo el objeto i exactamente una vez), nunca se puede reutilizar.</div>
     <div class="step-list" style="margin-top:14px">
-      <div class="step"><div class="step-icon">↩</div><div class="step-content"><h4>Recuperación de objetos (trazar hacia atrás desde M[4][10]=59)</h4>
-      <p>M[4][10]=59 ≠ M[3][10]=58 → <strong>objeto 4 incluido</strong> (v=15, nuevo w=10-3=7)<br>
-      M[3][7]=43 ≠ M[2][7]=31 → <strong>objeto 3 incluido</strong> (v=13, nuevo w=7-1=6)<br>
-      M[2][6]=30 = M[1][6]=30 → objeto 2 NO incluido<br>
-      M[1][6]=30 ≠ M[0][6]=0 → <strong>objeto 1 incluido</strong> (v=15, nuevo w=6-3=3)<br>
-      M[0][3]=0 → fin</p>
+      <div class="step"><div class="step-icon">↩</div><div class="step-content"><h4>Recuperación de objetos (trazar hacia atrás desde M[4][10]=46)</h4>
+      <p>M[4][10]=46 ≠ M[3][10]=44 → <strong>objeto 4 incluido</strong> (p=3, v=15; nuevo w=10−3=7)<br>
+      M[3][7]=31 = M[2][7]=31 → objeto 3 NO incluido (w queda en 7)<br>
+      M[2][7]=31 ≠ M[1][7]=15 → <strong>objeto 2 incluido</strong> (p=4, v=16; nuevo w=7−4=3)<br>
+      M[1][3]=15 ≠ M[0][3]=0 → <strong>objeto 1 incluido</strong> (p=3, v=15; nuevo w=3−3=0)<br>
+      M[0][0]=0 → fin</p>
       </div></div>
     </div>
     <div class="result-box">
-      Objetos seleccionados: 1, 3, 4<br>
-      Pesos: 3 + 1 + 3 = 7 ≤ 10 ✓<br>
-      Valor total: 15 + 13 + 15 = 43... (con obj 1+2+3+4 ajustado, valor máx = 59 con repetición)<br>
-      En mochila 0/1 estricta: objetos 1, 3, 4 → valor = 43, o bien 1+2+3 → valor = 44 (peso 8).<br>
-      <strong>Solución óptima 0/1: objetos 1, 2, 3 → valor 44, peso 8.</strong>
+      <strong>✅ Solución óptima 0/1: objetos 1, 2 y 4</strong><br>
+      Pesos: 3 + 4 + 3 = 10 ≤ 10 ✓<br>
+      Valor total: 15 + 16 + 15 = <strong>46</strong><br><br>
+      Verificación de alternativas:<br>
+      Obj 1+2+3: peso 3+4+1=8, valor 15+16+13=44 &lt; 46<br>
+      Obj 2+3+4: peso 4+1+3=8, valor 16+13+15=44 &lt; 46<br>
+      Obj 1+3+4: peso 3+1+3=7, valor 15+13+15=43 &lt; 46<br>
+      Obj 1+2+3+4: peso 11 &gt; 10 ❌ no cabe
     </div>
   </div>
 </div>
@@ -717,7 +846,7 @@ document.querySelectorAll('.exercise-body:not(.open)').forEach(function(b){ b.st
 var AVL_N = {
   n59:{v:59,x:330,y:44}, n15:{v:15,x:180,y:114}, n68:{v:68,x:480,y:114},
   n3:{v:3,x:95,y:184},   n21:{v:21,x:265,y:184}, n67:{v:67,x:405,y:184}, n82:{v:82,x:555,y:184},
-  n8:{v:8,x:48,y:254},   n16:{v:16,x:210,y:254}, n51:{v:51,x:320,y:254}, n81:{v:81,x:508,y:254}, n98:{v:98,x:608,y:254},
+  n8:{v:8,x:152,y:254},  n16:{v:16,x:210,y:254}, n51:{v:51,x:320,y:254}, n81:{v:81,x:508,y:254}, n98:{v:98,x:608,y:254},
   n40:{v:40,x:272,y:298}
 };
 var AVL_EDGES=[['n59','n15'],['n59','n68'],['n15','n3'],['n15','n21'],['n68','n67'],['n68','n82'],['n3','n8'],['n21','n16'],['n21','n51'],['n82','n81'],['n82','n98'],['n51','n40']];
