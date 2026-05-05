@@ -99,6 +99,77 @@ svg.tree text{font-family:'JetBrains Mono',monospace;}
   .prog-wrap{display:none;}
   .dot{width:8px;height:8px;}
 }
+
+/* ── Floating how-to panel ── */
+.ht-panel {
+  position: fixed;
+  bottom: 76px;
+  right: 24px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
+.ht-toggle {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(91,71,224,.35);
+  transition: all .18s;
+  white-space: nowrap;
+}
+.ht-toggle:hover { background: #4535b8; transform: translateY(-1px); }
+.ht-chevron { transition: transform .2s; }
+.ht-chevron.open { transform: rotate(180deg); }
+.ht-body {
+  width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.13);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.ht-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.ht-title {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+}
+.ht-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 14px; line-height: 1;
+  padding: 2px 4px; border-radius: 4px;
+}
+.ht-close:hover { color: var(--text); background: var(--surface2); }
+.ht-steps { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; max-height: 60vh; overflow-y: auto; }
+.ht-page { display: flex; flex-direction: column; gap: 12px; }
+.how-to-step { display: flex; gap: 10px; align-items: flex-start; }
+.hs-num {
+  min-width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(91,71,224,.12); border: 1px solid rgba(91,71,224,.25);
+  color: var(--accent); font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.hs-content { flex: 1; }
+.hs-label { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.hs-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+@media(max-width:640px){
+  .ht-panel { right: 12px; bottom: 80px; }
+  .ht-body { width: calc(100vw - 24px); }
+}
+
 </style>
 </head>
 <body>
@@ -173,7 +244,7 @@ svg.tree text{font-family:'JetBrains Mono',monospace;}
 
     <!-- Árbol inicial SVG -->
     <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">El recorrido por niveles se lee fila a fila de arriba abajo. Así queda el árbol:</p>
-    <div class="warn-box" style="font-size:12px;margin-bottom:8px">⚠️ <strong>¡Atención!</strong> El nodo <strong>8 es hijo DERECHO del 3</strong> (no izquierdo), porque 8 &gt; 3. El nodo 3 no tiene hijo izquierdo en este árbol. Esto se refleja visualmente a continuación (nodo naranja a la derecha del 3).</div>
+    
     <div class="tree-wrap">
       <svg class="tree" width="100%" viewBox="0 0 680 355">
         <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#aaaacc" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
@@ -1667,6 +1738,357 @@ función esBipartito(Grafo G):<br>
   </div>
 </div>
 
+<!-- FLOATING HOW-TO PANEL -->
+<div id="ht-panel" class="ht-panel" style="display:none">
+  <button class="ht-toggle" id="ht-btn" onclick="htToggle()" title="Pasos para resolver">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <span>Pasos</span>
+    <svg class="ht-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="ht-body" id="ht-body" style="display:none">
+    <div class="ht-header">
+      <span class="ht-title">Cómo resolver este ejercicio</span>
+      <button class="ht-close" onclick="htToggle()">✕</button>
+    </div>
+    <div class="ht-steps" id="ht-steps">
+<div class="ht-page" data-page="1" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Reconstruye el árbol desde niveles</div>
+        <div class="hs-desc">El primer valor es la raíz. Cada par siguiente son los hijos izq/der del nivel anterior. Dibuja el árbol resultante.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Calcula los recorridos</div>
+        <div class="hs-desc">Inorden (izq→raíz→der), Preorden (raíz→izq→der), Postorden (izq→der→raíz). El inorden de un AVL siempre da los valores ordenados.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Inserta siguiendo la ruta BST</div>
+        <div class="hs-desc">Para cada valor nuevo, baja por el árbol comparando. Inserta como hoja. Sube calculando FE en cada nodo.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Detecta el desequilibrio y rota</div>
+        <div class="hs-desc">Si algún FE = ±2, identifica el tipo (LL/RR/LR/RL) y aplica la rotación correspondiente. Actualiza los FE.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">5</div>
+      <div class="hs-content">
+        <div class="hs-label">Elimina con sucesor inorden</div>
+        <div class="hs-desc">Hoja → eliminar directamente. 1 hijo → sustituir. 2 hijos → reemplazar con el mínimo del subárbol derecho. Reequilibrar si es necesario.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="2" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Representa el array como árbol</div>
+        <div class="hs-desc">Índice base 0: hijo izq de i = 2i+1, hijo der = 2i+2, padre = ⌊(i-1)/2⌋. Dibuja mentalmente el árbol completo.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Construye el max-heap (heapify)</div>
+        <div class="hs-desc">Empieza en posición ⌊n/2⌋−1 y aplica sift-down hacia la izquierda hasta la raíz. El máximo queda en pos 0.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Fase de extracción</div>
+        <div class="hs-desc">Intercambia la raíz (máximo) con el último elemento. Reduce el tamaño del heap en 1. Aplica sift-down a la nueva raíz.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Repite n−1 veces</div>
+        <div class="hs-desc">Cada extracción coloca un elemento en su posición final. Al terminar, el array está ordenado de menor a mayor.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="3" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Identifica nodos y arcos</div>
+        <div class="hs-desc">Lista todos los arcos del grafo. Determina si es dirigido (flechas) o no dirigido (líneas).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Construye la matriz de adyacencia</div>
+        <div class="hs-desc">Fila = origen, columna = destino. Pon 1 (o el peso) si existe arco, 0 si no. Tamaño: V×V.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Construye las listas de adyacencia</div>
+        <div class="hs-desc">Para cada nodo, lista sus vecinos. En grafos no dirigidos, cada arco aparece en ambas listas.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">DFS — Recorrido en profundidad</div>
+        <div class="hs-desc">Pila + conjunto de visitados. Empieza por el nodo menor. Visita siempre el vecino no visitado más pequeño primero.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">5</div>
+      <div class="hs-content">
+        <div class="hs-label">BFS — Recorrido en anchura</div>
+        <div class="hs-desc">Cola FIFO + conjunto de visitados. Entra el nodo inicial, procesa nivel a nivel eligiendo vecinos en orden alfabético.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">6</div>
+      <div class="hs-content">
+        <div class="hs-label">Clasificación topológica (Kahn)</div>
+        <div class="hs-desc">Calcula in-degrees. Encola nodos con in-degree 0. Procesa: reduce grados de vecinos, encola los que lleguen a 0.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="4" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Identifica la raíz en el postorden</div>
+        <div class="hs-desc">El ÚLTIMO elemento del postorden es siempre la raíz del árbol (o subárbol) actual.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Divide el inorden por la raíz</div>
+        <div class="hs-desc">Busca la raíz en el inorden. Todo a su izquierda forma el subárbol izquierdo; todo a su derecha, el subárbol derecho.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Determina el tamaño de cada subárbol</div>
+        <div class="hs-desc">Cuenta cuántos elementos hay en cada parte del inorden. Eso mismo separa el postorden (excluyendo la raíz).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Aplica el proceso recursivamente</div>
+        <div class="hs-desc">Repite los pasos 1–3 para cada subárbol hasta llegar a subárboles de 0 o 1 elemento (hojas o vacío).</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="5" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">El primer valor es la raíz</div>
+        <div class="hs-desc">Lee el recorrido por niveles de izquierda a derecha: el primer número es siempre la raíz.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Inserta cada valor como en un BST normal</div>
+        <div class="hs-desc">Para cada siguiente valor, baja desde la raíz: si es menor ve a la izquierda, si es mayor ve a la derecha. Inserta como hoja.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Verifica la propiedad BST</div>
+        <div class="hs-desc">Al terminar, el recorrido inorden del árbol reconstruido debe dar todos los valores en orden ascendente.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="6" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Fija la forma del árbol</div>
+        <div class="hs-desc">Un montículo de n nodos es un árbol binario COMPLETO. La forma es única: nivel a nivel, rellenando de izquierda a derecha.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Determina el orden de visita del inorden</div>
+        <div class="hs-desc">El recorrido inorden visita las posiciones del array en un orden fijo. Para n=10: posiciones 7,3,8,1,9,4,0,5,2,6.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Asigna valores a posiciones</div>
+        <div class="hs-desc">El i-ésimo valor del inorden va a la i-ésima posición visitada. Construye así el array del montículo.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Verifica la propiedad heap</div>
+        <div class="hs-desc">Comprueba que cada padre sea ≥ sus hijos (max-heap) o ≤ (min-heap) para todas las posiciones.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">5</div>
+      <div class="hs-content">
+        <div class="hs-label">Inserta nuevos valores</div>
+        <div class="hs-desc">Añade al final del array. Sift-up: compara con el padre ⌊(i-1)/2⌋ e intercambia mientras violes la propiedad.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="7" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Inserta cada valor al final</div>
+        <div class="hs-desc">El montículo se almacena en un array. Cada nuevo elemento se coloca en la última posición disponible.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Sift-up tras cada inserción</div>
+        <div class="hs-desc">Compara el nuevo nodo con su padre (pos ⌊(i-1)/2⌋). Si viola la propiedad, intercambia. Repite hasta la raíz.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Eliminar el mínimo (o máximo)</div>
+        <div class="hs-desc">Extrae la raíz. Mueve el último elemento a la raíz. Aplica sift-down: intercambia con el hijo menor (min-heap) hasta restaurar la propiedad.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Repite 3 veces</div>
+        <div class="hs-desc">Cada eliminación extrae el mínimo actual. Anota el valor extraído en cada paso.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="8" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Fija la forma del árbol</div>
+        <div class="hs-desc">Con 6 nodos la forma es siempre la misma: raíz, 2 hijos, 3 nietos (los 3 primeros del último nivel).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">La raíz debe ser el máximo</div>
+        <div class="hs-desc">En un max-heap, la raíz es siempre el mayor valor del conjunto. Aquí siempre será 3.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Enumera sistemáticamente</div>
+        <div class="hs-desc">Para cada posición de hijo de la raíz (pos 1 y 2) prueba todos los valores válidos (≤ raíz). Luego rellena el nivel 3 respetando la propiedad en cada subárbol.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Descarta las inválidas</div>
+        <div class="hs-desc">Si algún padre es menor que un hijo, esa asignación no es un montículo válido. Elimínala.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="9" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Determina qué raíces son viables</div>
+        <div class="hs-desc">Para que el árbol sea AVL, |h_izq − h_der| ≤ 1. Analiza cada posible raíz ≥ 4 y comprueba si el reparto de nodos es equilibrado.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Analiza el subárbol izquierdo</div>
+        <div class="hs-desc">Los valores menores que la raíz van a la izquierda. Construye todos los AVLs posibles con esos valores.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Analiza el subárbol derecho</div>
+        <div class="hs-desc">Los valores mayores van a la derecha. Construye todos los AVLs posibles con esos valores.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Combina y dibuja</div>
+        <div class="hs-desc">Cada combinación (subárbol izq) × (subárbol der) válida genera un AVL distinto. Dibuja y verifica FE en cada nodo.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="10" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Entiende las dos representaciones</div>
+        <div class="hs-desc">Matriz V×V de adyacencia vs lista de listas de vecinos. Cada una tiene ventajas e inconvenientes según la operación.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Analiza ¿existe arco (u,v)?</div>
+        <div class="hs-desc">Matriz: acceso directo M[u][v] → O(1). Lista: recorrer vecinos de u hasta encontrar v → O(deg(u)).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Analiza añadir/eliminar nodo</div>
+        <div class="hs-desc">Matriz: redimensionar la matriz entera → O(V²). Lista: añadir nueva lista → O(1). Eliminar: borrar lista + referencias → O(V+E).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Concluye cuándo usar cada una</div>
+        <div class="hs-desc">Matriz: grafos densos, consultas frecuentes de existencia de arco. Lista: grafos dispersos, cambios estructurales frecuentes.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="11" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Calcula los grados de entrada</div>
+        <div class="hs-desc">Para cada nodo, cuenta cuántos arcos llegan a él (in-degree). Los que tienen in-degree = 0 son los nodos de partida.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Inicializa la cola de Kahn</div>
+        <div class="hs-desc">Encola todos los nodos con in-degree = 0. Si la cola está vacía desde el inicio, todos forman un ciclo.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Procesa iterativamente</div>
+        <div class="hs-desc">Extrae un nodo de la cola. Para cada vecino, resta 1 a su in-degree. Si llega a 0, encólalo. Anota los nodos procesados.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Verifica el resultado</div>
+        <div class="hs-desc">Si procesaste V nodos en total → no hay ciclo (es un DAG). Si procesaste menos → los nodos restantes forman el/los ciclos.</div>
+      </div>
+    </div>
+  </div></div>
+<div class="ht-page" data-page="12" style="display:none"><div class="how-to-step">
+      <div class="hs-num">1</div>
+      <div class="hs-content">
+        <div class="hs-label">Intenta 2-colorear el grafo</div>
+        <div class="hs-desc">Asigna color 0 al nodo inicial. Cada vecino recibe el color opuesto (1−color_actual).</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">2</div>
+      <div class="hs-content">
+        <div class="hs-label">Usa BFS para propagar los colores</div>
+        <div class="hs-desc">Encola el nodo inicial. Al procesar cada nodo, asigna color al vecino no coloreado. Si el vecino ya tiene color, comprueba que sea diferente.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">3</div>
+      <div class="hs-content">
+        <div class="hs-label">Detecta conflicto</div>
+        <div class="hs-desc">Si dos nodos adyacentes tienen el mismo color → NO es bipartito (hay un ciclo de longitud impar). Para el algoritmo.</div>
+      </div>
+    </div><div class="how-to-step">
+      <div class="hs-num">4</div>
+      <div class="hs-content">
+        <div class="hs-label">Cubre todas las componentes</div>
+        <div class="hs-desc">Si el grafo no es conexo, repite desde un nodo no visitado hasta cubrir todos. Si ninguna componente da conflicto → ES bipartito.</div>
+      </div>
+    </div>
+  </div></div>
+
+    </div>
+  </div>
+</div>
+
+
 <script>
 
 var TOTAL = 13;
@@ -1910,13 +2332,13 @@ function ins2Next(){
   if(ins2Step>=INS2_STEPS.length){var b=document.getElementById('ins2-next');b.disabled=true;b.textContent='Completado ✓';}
 }
 function ins2Reset(){
-  ins2Step=0; ins2Draw(0);
+  ins2Step=0; // ins2Draw deferred — SVG only visible on page 1
   document.getElementById('ins2-exp').textContent='Pulsa "Siguiente" para comenzar la inserción de 47, 73 y 54.';
   document.getElementById('ins2-res').textContent='—';
   document.getElementById('ins2-cnt').textContent='Paso 0 / '+INS2_STEPS.length;
   var b=document.getElementById('ins2-next');b.disabled=false;b.textContent='Siguiente →';
 }
-ins2Draw(0);
+// ins2Draw deferred — SVG only visible on page 1
 
 /* ==================== DELETION STEPPER (Part 3) ==================== */
 var DEL3_STEPS=[
@@ -1990,13 +2412,55 @@ function del3Next(){
   if(del3Step>=DEL3_STEPS.length){var b=document.getElementById('del3-next');b.disabled=true;b.textContent='Completado ✓';}
 }
 function del3Reset(){
-  del3Step=0; del3Draw(0);
+  del3Step=0; // del3Draw deferred — SVG only visible on page 1
   document.getElementById('del3-exp').textContent='Pulsa "Siguiente" para comenzar la eliminación de 67 y 82.';
   document.getElementById('del3-res').textContent='—';
   document.getElementById('del3-cnt').textContent='Paso 0 / '+DEL3_STEPS.length;
   var b=document.getElementById('del3-next');b.disabled=false;b.textContent='Siguiente →';
 }
-del3Draw(0);
+// del3Draw deferred — SVG only visible on page 1
+
+/* ── Floating how-to panel JS ── */
+var htOpen = false;
+// Pages that have how-to steps (all except page-0)
+var HT_PAGES = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+function htShow() {
+  var panel = document.getElementById('ht-panel');
+  if (!panel) return;
+  var pageDiv = document.querySelector('#ht-steps .ht-page[data-page="' + current + '"]');
+  var hasSteps = !!pageDiv;
+  panel.style.display = hasSteps ? 'flex' : 'none';
+  if (!hasSteps && htOpen) htToggle();
+}
+
+function htToggle() {
+  htOpen = !htOpen;
+  var body = document.getElementById('ht-body');
+  var chev = document.querySelector('.ht-chevron');
+  body.style.display = htOpen ? 'block' : 'none';
+  if (chev) chev.classList.toggle('open', htOpen);
+  if (htOpen) htShowPage();
+}
+
+function htShowPage() {
+  document.querySelectorAll('#ht-steps .ht-page').forEach(function(d) {
+    d.style.display = +d.getAttribute('data-page') === current ? 'flex' : 'none';
+  });
+}
+
+// Patch goTo to also update the panel
+var _origGoTo = goTo;
+goTo = function(n) {
+  _origGoTo(n);
+  htShow();
+  if (htOpen) htShowPage();
+};
+
+// Init on load — defer until DOM is ready
+setTimeout(htShow, 0);
+
 </script>
+
 </body>
 </html>
