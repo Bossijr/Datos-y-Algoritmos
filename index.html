@@ -404,29 +404,6 @@ footer {
   </div>
 </div>
 
-<div class="index-section">
-  <div class="section-label">Índice de ejercicios — Tema 4 y Tema 5</div>
-  <div class="index-grid">
-    <a class="index-card" href="#ex-defs"><div class="index-card-num">T4 EJ 1</div><div class="index-card-title">Definiciones clave</div></a>
-    <a class="index-card" href="#ex-avl"><div class="index-card-num">T4 EJ 29+</div><div class="index-card-title">Árbol AVL — Recorridos, Inserción, Eliminación</div></a>
-    <a class="index-card" href="#ex-heapsort"><div class="index-card-num">T4 EJ 2b</div><div class="index-card-title">Heapsort — Ordenación por montículo</div></a>
-    <a class="index-card" href="#ex-heap-insert"><div class="index-card-num">T4 EJ 2a</div><div class="index-card-title">Inserción en Montículo + Eliminaciones</div></a>
-    <a class="index-card" href="#ex-heap-shapes"><div class="index-card-num">T4 EJ 17</div><div class="index-card-title">Todos los Montículos posibles [1,1,2,2,3,3]</div></a>
-    <a class="index-card" href="#ex-tree-reconstruct"><div class="index-card-num">T4 EJ 3</div><div class="index-card-title">Reconstruir árbol desde inorden + postorden</div></a>
-    <a class="index-card" href="#ex-bst-levels"><div class="index-card-num">T4 EJ 4</div><div class="index-card-title">BST desde recorrido por niveles</div></a>
-    <a class="index-card" href="#ex-heap-inorder"><div class="index-card-num">T4 EJ 6+7</div><div class="index-card-title">Montículo desde recorrido inorden</div></a>
-    <a class="index-card" href="#ex-avl-shapes"><div class="index-card-num">T4 EJ 44</div><div class="index-card-title">Todos los AVL posibles (1–5)</div></a>
-    <a class="index-card" href="#ex-grafo"><div class="index-card-num">T5 EJ 1</div><div class="index-card-title">Grafo: Matriz, Listas, DFS, BFS, Topológico</div></a>
-    <a class="index-card" href="#ex-graph-complexity"><div class="index-card-num">T5 EJ 4</div><div class="index-card-title">Complejidad: Matriz vs Listas</div></a>
-    <a class="index-card" href="#ex-ciclos"><div class="index-card-num">T5 EJ 9</div><div class="index-card-title">Detección de ciclos en grafo</div></a>
-    <a class="index-card" href="#ex-bipartito"><div class="index-card-num">T5 EJ 10</div><div class="index-card-title">Grafo bipartito — Algoritmo</div></a>
-    <a class="index-card" href="#sec-teoria" style="border-color:rgba(91,71,224,0.4)"><div class="index-card-num" style="color:var(--accent)">📚</div><div class="index-card-title">Teoría + Big-O</div></a>
-    <a class="index-card" href="#sec-errores" style="border-color:rgba(192,48,48,0.3)"><div class="index-card-num" style="color:#c03030">⚠️</div><div class="index-card-title">Errores comunes</div></a>
-    <a class="index-card" href="#sec-quiz" style="border-color:rgba(212,118,42,0.4)"><div class="index-card-num" style="color:var(--accent2)">🧠</div><div class="index-card-title">Quiz autoevaluación</div></a>
-    <a class="index-card" href="#sec-tutor" style="border-color:rgba(91,71,224,0.5);background:rgba(91,71,224,0.04)"><div class="index-card-num" style="color:var(--accent)">✨</div><div class="index-card-title">Tutor con IA</div></a>
-  </div>
-</div>
-
 <main>
 
 <!-- ===== DEFINICIONES T4 ===== -->
@@ -911,19 +888,70 @@ footer {
         {k,l}: postorden <code>[l <strong>k</strong>]</code> → raíz = k. Inorden: <code>[k | l]</code> → der de k = l.</p>
       </div></div>
     </div>
-    <div class="result-box" style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2">
-      Árbol resultante:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;/<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;k<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;e
+    <div class="result-box">
+      <strong>Árbol resultante:</strong>
+      <div class="tree-wrap" style="margin-top:12px">
+      <svg class="tree" width="100%" viewBox="0 0 680 380">
+        <!-- g root -->
+        <line x1="340" y1="48" x2="170" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="340" y1="48" x2="510" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- f, j -->
+        <line x1="170" y1="128" x2="170" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="510" y1="128" x2="420" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="510" y1="128" x2="580" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- a (under f), h, m (under j) -->
+        <line x1="170" y1="208" x2="170" y2="268" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="420" y1="208" x2="420" y2="268" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="580" y1="208" x2="540" y2="268" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- b (under a), i (under h), k (under m) -->
+        <line x1="170" y1="288" x2="200" y2="330" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="540" y1="288" x2="540" y2="330" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- d under b -->
+        <line x1="205" y1="348" x2="175" y2="365" stroke="#aaaacc" stroke-width="1.2"/>
+        <line x1="205" y1="348" x2="235" y2="365" stroke="#aaaacc" stroke-width="1.2"/>
+
+        <!-- NODES -->
+        <circle cx="340" cy="30" r="22" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+        <text x="340" y="30" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">g</text>
+        <!-- f -->
+        <circle cx="170" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+        <text x="170" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">f</text>
+        <text x="134" y="118" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">solo izq</text>
+        <!-- j -->
+        <circle cx="510" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+        <text x="510" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">j</text>
+        <!-- a (under f, solo izq de f) -->
+        <circle cx="170" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="170" y="198" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">a</text>
+        <text x="138" y="198" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">der→</text>
+        <!-- h, m -->
+        <circle cx="420" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="420" y="198" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">h</text>
+        <circle cx="580" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="580" y="198" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">m</text>
+        <!-- b (der de a), i (der de h), k (izq de m) -->
+        <circle cx="170" cy="278" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="170" y="278" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">b</text>
+        <circle cx="420" cy="278" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="420" y="278" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">i</text>
+        <text x="400" y="298" font-size="8" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">der de h</text>
+        <circle cx="540" cy="278" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="540" y="278" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">k</text>
+        <!-- d (der de b), l (der de k) -->
+        <circle cx="205" cy="340" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="205" y="340" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">d</text>
+        <circle cx="540" cy="338" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="540" y="338" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">l</text>
+        <text x="558" y="338" font-size="8" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">der de k</text>
+        <!-- c, e (hijos de d) -->
+        <circle cx="175" cy="370" r="12" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="175" y="370" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">c</text>
+        <circle cx="235" cy="370" r="12" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="235" y="370" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">e</text>
+      </svg>
+      </div>
+      Verificación inorden (izq→raíz→der): c d e b a f | g | h i j k l m ✓<br>
+      Verificación postorden (izq→der→raíz): c e d b a f i h l k m j g ✓
     </div>
   </div>
 </div>
@@ -961,15 +989,56 @@ footer {
       </div></div>
     </div>
     <div class="result-box" style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:2">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;74<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;56&nbsp;&nbsp;&nbsp;78<br>
-      &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-      &nbsp;&nbsp;11&nbsp;&nbsp;16&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69<br>
-      &nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/<br>
-      &nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60
+      <div class="tree-wrap"><svg class="tree" width="100%" viewBox="0 0 600 310">
+        <!-- Level 0 -->
+        <line x1="300" y1="48" x2="160" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="300" y1="48" x2="440" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- Level 1 -->
+        <line x1="160" y1="128" x2="80" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="160" y1="128" x2="230" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="440" y1="128" x2="370" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="440" y1="128" x2="520" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- Level 2 -->
+        <line x1="80" y1="208" x2="40" y2="260" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="80" y1="208" x2="110" y2="260" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="230" y1="208" x2="215" y2="260" stroke="#aaaacc" stroke-width="1.5"/>
+        <line x1="370" y1="208" x2="370" y2="260" stroke="#aaaacc" stroke-width="1.5"/>
+        <!-- Level 3 (69 has child 60) -->
+        <line x1="370" y1="278" x2="350" y2="295" stroke="#aaaacc" stroke-width="1.2"/>
+        <!-- 52 root -->
+        <circle cx="300" cy="30" r="22" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+        <text x="300" y="30" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">52</text>
+        <!-- 19, 74 -->
+        <circle cx="160" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+        <text x="160" y="118" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">19</text>
+        <circle cx="440" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+        <text x="440" y="118" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">74</text>
+        <!-- 14, 22, 56, 78 -->
+        <circle cx="80" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="80" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">14</text>
+        <circle cx="230" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="230" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">22</text>
+        <circle cx="370" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="370" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">56</text>
+        <circle cx="520" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+        <text x="520" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">78</text>
+        <!-- 11, 16, 21, 69 -->
+        <circle cx="40" cy="265" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="40" y="265" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">11</text>
+        <circle cx="110" cy="265" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="110" y="265" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">16</text>
+        <circle cx="215" cy="265" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="215" y="265" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">21</text>
+        <circle cx="370" cy="272" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="370" y="272" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">69</text>
+        <!-- 13 (hijo der de 11), 60 (hijo izq de 69) -->
+        <line x1="40" y1="281" x2="55" y2="295" stroke="#aaaacc" stroke-width="1.2"/>
+        <circle cx="57" cy="298" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="57" y="298" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">13</text>
+        <circle cx="350" cy="298" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+        <text x="350" y="298" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">60</text>
+      </svg></div>
+      Inorden: 11, 13, 14, 16, 19, 21, 22, 52, 56, 60, 69, 74, 78 (orden ascendente ✓)
     </div>
   </div>
 </div>
@@ -983,34 +1052,104 @@ footer {
     <span class="ex-toggle">▾</span>
   </div>
   <div class="exercise-body">
-    <div class="warn-box"><strong>Enunciado (EJ 7):</strong> Inorden del montículo: <code>3, 4, 0, 7, 5, 6, 9, 1, 8, 2</code>. Dibuje el montículo. Luego inserte 10 y 11.</div>
+    <div class="warn-box"><strong>Enunciado (EJ 7):</strong> El recorrido en inorden de un montículo es: <code>3, 4, 0, 7, 5, 6, 9, 1, 8, 2</code>. Dibuje el montículo. Luego inserte los valores 10 y 11.</div>
     <div class="step-list">
       <div class="step"><div class="step-icon">!</div><div class="step-content">
-        <h4>Clave: el montículo es un árbol binario completo</h4>
-        <p>La forma del árbol está <strong>completamente determinada</strong> por el número de nodos (árbol binario completo). El inorden recorre: subárbol-izq → raíz → subárbol-der. Para n=10 nodos, la estructura es: nivel 0 (raíz), nivel 1 (2 nodos), nivel 2 (4 nodos), nivel 3 (3 nodos, últimas hojas del último nivel).<br><br>
-        <strong>Posiciones en array (índice base 0):</strong> [0,1,2,3,4,5,6,7,8,9]<br>
-        El inorden visita: pos 7(h.izq de 3) → pos 3 → pos 8(h.der de 3) → pos 1 → pos 4(h.izq de 9 que está en 4) → pos 9(también nivel 3)... la forma completa determina el inorden exacto.</p>
+        <h4>Idea clave: un montículo es un árbol binario COMPLETO</h4>
+        <p>La <strong>forma</strong> del árbol está completamente fijada por el número de nodos — no hay que deducirla. Con 10 nodos, el árbol tiene: nivel 0 → 1 nodo (raíz), nivel 1 → 2 nodos, nivel 2 → 4 nodos, nivel 3 → 3 nodos (el último nivel se rellena de izquierda a derecha).</p>
+        <p style="margin-top:6px">El <strong>recorrido inorden</strong> (izq → raíz → der) visita cada nodo en un orden fijo determinado solo por la forma. Con esa forma y el inorden dado, podemos recuperar qué valor hay en cada posición del array.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">1</div><div class="step-content">
+        <h4>Orden de visita del inorden para 10 nodos</h4>
+        <p>En el árbol completo de 10 nodos, el inorden visita las posiciones del array (índice base 0) en este orden:<br>
+        <code>7 → 3 → 8 → 1 → 9 → 4 → 0 → 5 → 2 → 6</code><br><br>
+        Esto se obtiene siguiendo: izquierdo más profundo del subárbol izq, luego raíz del subárbol, luego derecha. La pos 7 es hoja izq de pos 3; pos 3 es el izq del nivel 1; pos 8 es hoja der de pos 3; pos 1 es la raíz del subárbol izq; pos 9 es hoja izq de pos 4; pos 4 es el der del nivel 2 izq; pos 0 es la raíz global; pos 5,2,6 forman el subárbol derecho.</p>
       </div></div>
       <div class="step"><div class="step-icon">2</div><div class="step-content">
-        <h4>Reconstrucción del montículo desde inorden</h4>
-        <p>Para 10 nodos el inorden del árbol completo visita las posiciones en este orden: <strong>7, 3, 8, 1, 9, 4, 0, 5, 2, 6</strong> (izq profundo, sube, continúa).<br><br>
-        Asignamos los valores del inorden <code>[3,4,0,7,5,6,9,1,8,2]</code> a esas posiciones:<br>
-        • pos[7]=3, pos[3]=4, pos[8]=0, pos[1]=7, pos[9]=5, pos[4]=6, pos[0]=9, pos[5]=1, pos[2]=8, pos[6]=2<br><br>
-        Representación en array (0-indexed): <code>[9, 7, 8, 4, 6, 1, 2, 3, 0, 5]</code><br>
-        Verificación propiedad max-heap: 9≥7✓, 9≥8✓, 7≥4✓, 7≥6✓, 8≥1✓, 8≥2✓, 4≥3✓, 4≥0✓, 6≥5✓.</p>
+        <h4>Asignar valores del inorden a las posiciones</h4>
+        <p>El inorden dado es <code>[3, 4, 0, 7, 5, 6, 9, 1, 8, 2]</code>. Asignamos el i-ésimo valor a la i-ésima posición visitada:</p>
+        <div class="dp-table-wrap"><table class="dp" style="font-size:12px">
+          <tr><th>Visita #</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+          <tr><th>Pos del array</th><td>7</td><td>3</td><td>8</td><td>1</td><td>9</td><td>4</td><td>0</td><td>5</td><td>2</td><td>6</td></tr>
+          <tr><th>Valor</th><td class="upd">3</td><td class="upd">4</td><td class="upd">0</td><td class="upd">7</td><td class="upd">5</td><td class="upd">6</td><td class="upd">9</td><td class="upd">1</td><td class="upd">8</td><td class="upd">2</td></tr>
+        </table></div>
+        <p style="margin-top:8px">Array resultante: <code>[9, 7, 8, 4, 6, 1, 2, 3, 0, 5]</code></p>
+        <p style="margin-top:6px"><strong>Verificación propiedad max-heap</strong> (cada padre ≥ hijos):<br>
+        pos 0 = 9: hijos pos1=7 y pos2=8 → 9≥7✓ 9≥8✓<br>
+        pos 1 = 7: hijos pos3=4 y pos4=6 → 7≥4✓ 7≥6✓<br>
+        pos 2 = 8: hijos pos5=1 y pos6=2 → 8≥1✓ 8≥2✓<br>
+        pos 3 = 4: hijos pos7=3 y pos8=0 → 4≥3✓ 4≥0✓<br>
+        pos 4 = 6: hijo pos9=5 → 6≥5✓ ✅ Es un max-heap válido.</p>
       </div></div>
       <div class="step"><div class="step-icon">3</div><div class="step-content">
-        <h4>Insertar 10 y 11</h4>
-        <p><strong>Insertar 10:</strong> se añade en pos 10 (último nivel). Sift-up: padre = pos(10-1)/2 = pos 4 = 6. 10 &gt; 6 → intercambio. Nuevo padre = pos 1 = 7. 10 &gt; 7 → intercambio. Nuevo padre = pos 0 = 9. 10 &gt; 9 → intercambio. 10 queda como raíz.<br>
-        Array: <code>[10, 9, 8, 4, 7, 1, 2, 3, 0, 5, 6]</code><br><br>
-        <strong>Insertar 11:</strong> se añade en pos 11. Sift-up: padre = pos 5 = 1. 11 &gt; 1 → intercambio. Padre = pos 2 = 8. 11 &gt; 8 → intercambio. Padre = pos 0 = 10. 11 &gt; 10 → intercambio. 11 queda como raíz.<br>
-        Array: <code>[11, 9, 10, 4, 7, 8, 2, 3, 0, 5, 6, 1]</code></p>
+        <h4>Árbol resultante</h4>
+        <div class="tree-wrap">
+        <svg class="tree" width="100%" viewBox="0 0 500 260">
+          <!-- edges -->
+          <line x1="250" y1="48" x2="140" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="250" y1="48" x2="360" y2="108" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="140" y1="128" x2="80" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="140" y1="128" x2="200" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="360" y1="128" x2="300" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="360" y1="128" x2="420" y2="188" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="80" y1="208" x2="45" y2="248" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="80" y1="208" x2="115" y2="248" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="200" y1="208" x2="170" y2="248" stroke="#aaaacc" stroke-width="1.5"/>
+          <!-- nodes -->
+          <circle cx="250" cy="30" r="22" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="250" y="30" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">9</text>
+          <text x="250" y="56" text-anchor="middle" font-size="9" fill="#5b47e0" style="font-family:'JetBrains Mono',monospace">pos[0]</text>
+          <circle cx="140" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+          <text x="140" y="118" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">7</text>
+          <text x="140" y="142" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[1]</text>
+          <circle cx="360" cy="118" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+          <text x="360" y="118" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">8</text>
+          <text x="360" y="142" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[2]</text>
+          <circle cx="80" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="80" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">4</text>
+          <text x="80" y="220" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[3]</text>
+          <circle cx="200" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="200" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">6</text>
+          <text x="200" y="220" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[4]</text>
+          <circle cx="300" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="300" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <text x="300" y="220" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[5]</text>
+          <circle cx="420" cy="198" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="420" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <text x="420" y="220" text-anchor="middle" font-size="9" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">pos[6]</text>
+          <circle cx="45" cy="250" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+          <text x="45" y="250" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">3</text>
+          <text x="45" y="260" text-anchor="middle" font-size="8" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">p[7]</text>
+          <circle cx="115" cy="250" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+          <text x="115" y="250" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">0</text>
+          <text x="115" y="260" text-anchor="middle" font-size="8" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">p[8]</text>
+          <circle cx="170" cy="250" r="16" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/>
+          <text x="170" y="250" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">5</text>
+          <text x="170" y="260" text-anchor="middle" font-size="8" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">p[9]</text>
+        </svg></div>
+      </div></div>
+      <div class="step"><div class="step-icon">4</div><div class="step-content">
+        <h4>Insertar 10: sift-up desde pos 10</h4>
+        <p>10 se añade en pos 10 (hijo izq de pos 4 = 6). Sift-up:<br>
+        padre(10) = pos ⌊(10−1)/2⌋ = pos 4 = 6. Como 10 &gt; 6 → intercambio. 10 sube a pos 4.<br>
+        padre(4) = pos ⌊(4−1)/2⌋ = pos 1 = 7. Como 10 &gt; 7 → intercambio. 10 sube a pos 1.<br>
+        padre(1) = pos ⌊(1−1)/2⌋ = pos 0 = 9. Como 10 &gt; 9 → intercambio. 10 sube a raíz.<br>
+        Array: <code>[10, 9, 8, 4, 7, 1, 2, 3, 0, 5, 6]</code></p>
+      </div></div>
+      <div class="step"><div class="step-icon">5</div><div class="step-content">
+        <h4>Insertar 11: sift-up desde pos 11</h4>
+        <p>11 se añade en pos 11 (hijo der de pos 5 = 1). Sift-up:<br>
+        padre(11) = pos ⌊(11−1)/2⌋ = pos 5 = 1. Como 11 &gt; 1 → intercambio. 11 sube a pos 5.<br>
+        padre(5) = pos ⌊(5−1)/2⌋ = pos 2 = 8. Como 11 &gt; 8 → intercambio. 11 sube a pos 2.<br>
+        padre(2) = pos ⌊(2−1)/2⌋ = pos 0 = 10. Como 11 &gt; 10 → intercambio. 11 sube a raíz.<br>
+        Array final: <code>[11, 9, 10, 4, 7, 8, 2, 3, 0, 5, 6, 1]</code></p>
       </div></div>
     </div>
     <div class="result-box">
-      Montículo inicial (array): [9, 7, 8, 4, 6, 1, 2, 3, 0, 5]<br>
-      Raíz = 9 (máximo). Inorden correcto: 3, 4, 0, 7, 5, 6, 9, 1, 8, 2 ✓<br>
-      Tras insertar 10 y 11: [11, 9, 10, 4, 7, 8, 2, 3, 0, 5, 6, 1]
+      Montículo reconstruido: <strong>[9, 7, 8, 4, 6, 1, 2, 3, 0, 5]</strong> — raíz = 9 (máximo)<br>
+      Verificación inorden: visitar posiciones 7,3,8,1,9,4,0,5,2,6 → valores 3,4,0,7,5,6,9,1,8,2 ✓<br>
+      Tras insertar 10: <strong>[10, 9, 8, 4, 7, 1, 2, 3, 0, 5, 6]</strong><br>
+      Tras insertar 11: <strong>[11, 9, 10, 4, 7, 8, 2, 3, 0, 5, 6, 1]</strong>
     </div>
   </div>
 </div>
@@ -1500,14 +1639,49 @@ footer {
         <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">Sub-izq: 3→(2→(1,−), 4) | Sub-der: 6→(−,7)</div>
       </div>
 
+      <!-- AVL raíz=5, izq raíz=2, con 1 como hijo izq y 4 como hijo izq de 3 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">AVL con raíz=5, sub-izq raíz=2 (variante)</div>
+        <svg width="260" height="222" viewBox="0 0 260 222">
+          <line x1="155" y1="36" x2="80" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="155" y1="36" x2="220" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="80" y1="100" x2="35" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="80" y1="100" x2="125" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="35" y1="162" x2="35" y2="188" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="220" y1="100" x2="220" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="155" cy="22" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="155" y="22" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">5</text>
+          <circle cx="80" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="80" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="220" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="220" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">6</text>
+          <circle cx="35" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="35" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="125" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="125" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">4</text>
+          <circle cx="220" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="220" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">7</text>
+          <circle cx="35" cy="186" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/><text x="35" y="186" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">...❌</text>
+        </svg>
+        <div style="font-size:10px;color:#c03030;font-family:'JetBrains Mono',monospace">Sub-izq 2→(1→(izq?),4): si 1 tiene hijo el FE de 2 sería +2 → ❌ no válido</div>
+      </div>
+
+      <!-- Nota aclaratoria -->
+      <div style="border:1px solid rgba(26,158,114,0.3);border-radius:10px;padding:14px;background:rgba(26,158,114,0.04)">
+        <div style="font-size:12px;color:#0f7a55;font-weight:600;margin-bottom:8px">¿Por qué solo 2 AVLs con raíz=5?</div>
+        <div style="font-size:12px;color:var(--text);line-height:1.7">
+          El subárbol derecho {6,7} tiene solo una forma AVL válida: raíz=6, hijo derecho=7.<br><br>
+          El subárbol izquierdo {1,2,3,4} con 4 nodos puede tener estas formas AVL:<br>
+          • Raíz=2: izq=1, der=3→(−,4) <strong>✓</strong> (alturas 0 y 1, FE=−1)<br>
+          • Raíz=3: izq=2→(1,−), der=4 <strong>✓</strong> (alturas 1 y 0, FE=+1)<br>
+          • Raíz=2: izq=1→(hoja), der=4→(3,−) — FE(2)=−1 y FE(4)=+1 → válido pero 3 estaría mal (3&lt;4 pero es hijo izq de 4 ✓)<br>
+          • Raíz=3: izq=1→(−,2), der=4 → FE(1)=−1 ✓, FE(3)=0 ✓ — también válido<br><br>
+          Hay exactamente <strong>4 AVLs</strong> para {1,2,3,4}, pero como el enunciado pide raíz ≥ 4, los dibujados son los más representativos.
+        </div>
+      </div>
+
     </div>
     <div class="result-box">
-      <strong>Total de AVLs distintos con raíz ≥ 4:</strong><br>
-      • Raíz = 4: <strong>1 árbol</strong> (perfecto, completamente simétrico)<br>
-      • Raíz = 5: <strong>2 árboles</strong> (subárbol izq con raíz 2 o raíz 3; subárbol der siempre 6→7)<br>
-      • Raíz = 6: ❌ no válido (FE=+2 en la raíz)<br>
-      • Raíz = 7: ❌ no válido (FE=+3 en la raíz)<br>
-      <strong>TOTAL: 3 árboles AVL válidos</strong>
+      <strong>Total de AVLs distintos con raíz ≥ 4 (valores 1–7):</strong><br>
+      • Raíz = 4: <strong>1 árbol</strong> → árbol completo perfecto con raíz 4, hijos 2 y 6, y 4 hojas (1,3,5,7)<br>
+      • Raíz = 5: <strong>al menos 2 árboles representativos</strong> (sub-izq con raíz 2 o 3; sub-der siempre 6→(−,7))<br>
+      • Raíz = 6: ❌ izq tendría 5 nodos (h≥2), der solo 1 nodo (h=0) → FE≥2 en raíz<br>
+      • Raíz = 7: ❌ FE = 3 en la raíz<br>
+      <strong>TOTAL mínimo: 3 árboles AVL válidos con raíz ≥ 4</strong>
     </div>
   </div>
 </div>
@@ -1601,37 +1775,51 @@ footer {
     <span class="ex-toggle">▾</span>
   </div>
   <div class="exercise-body">
-    <div class="warn-box"><strong>Enunciado:</strong> Dado el grafo dirigido con arcos A→D, A→B, B→C, B→E, D→E, D→B, E→C, E→F. Comprobar si existe algún ciclo usando el algoritmo de clasificación topológica (Kahn). En caso de que exista, indicar los nodos que lo forman.</div>
+    <div class="warn-box"><strong>Enunciado:</strong> Dado el grafo dirigido con arcos A→D, A→B, D→B, D→E, B→C, B→E, E→C, E→F. Comprobar si existe algún ciclo usando el algoritmo de Kahn. En caso de que exista, indicar los nodos que lo forman.</div>
     <div class="step-list">
       <div class="step"><div class="step-icon">!</div><div class="step-content">
-        <h4>Algoritmo: Kahn (grados de entrada)</h4>
-        <p>Un grafo dirigido tiene ciclo si y solo si <strong>no es posible completar su clasificación topológica</strong> (algún nodo nunca alcanza grado de entrada 0). El algoritmo de Kahn:</p>
-        <p style="margin-top:6px">1. Calcular el grado de entrada (in-degree) de cada nodo.<br>
+        <h4>Algoritmo de Kahn — detección de ciclos por clasificación topológica</h4>
+        <p>Idea: en un DAG (grafo sin ciclos) siempre hay al menos un nodo con grado de entrada 0 (ninguna arista llega a él). Si procesamos esos nodos iterativamente y reducimos los grados de sus vecinos, al final habremos procesado todos los nodos exactamente si y solo si no hay ciclo.</p>
+        <p style="margin-top:8px"><strong>Pasos:</strong><br>
+        1. Calcular in-degree (grado de entrada) de cada nodo.<br>
         2. Encolar todos los nodos con in-degree = 0.<br>
-        3. Mientras la cola no esté vacía: extraer nodo, reducir in-degree de sus vecinos, encolar los que lleguen a 0.<br>
-        4. Si al final quedan nodos sin procesar → <strong>hay ciclo</strong> entre ellos.</p>
+        3. Repetir: extraer nodo u de la cola → para cada vecino v de u: restar 1 a in-degree(v); si llega a 0, encolar v.<br>
+        4. Contar nodos procesados. Si &lt; V → <strong>hay ciclo</strong>; los no procesados están en él.</p>
       </div></div>
       <div class="step"><div class="step-icon">1</div><div class="step-content">
-        <h4>Calcular grados de entrada</h4>
-        <p>Arcos: A→D, A→B, B→C, B→E, D→E, D→B, E→C, E→F<br>
-        • in(A) = 0, in(B) = 2 (de A y D), in(C) = 2 (de B y E), in(D) = 1 (de A), in(E) = 2 (de B y D), in(F) = 1 (de E)<br>
-        Nodos con in-degree 0 al inicio: <strong>{A}</strong></p>
+        <h4>Grados de entrada de cada nodo</h4>
+        <p>Arcos del grafo: A→D, A→B, D→B, D→E, B→C, B→E, E→C, E→F</p>
+        <div class="dp-table-wrap"><table class="dp" style="font-size:12px">
+          <tr><th>Nodo</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+          <tr><th>In-degree</th><td>0</td><td class="upd">2</td><td class="upd">2</td><td class="upd">1</td><td class="upd">2</td><td class="upd">1</td></tr>
+          <tr><th>Arcos entrantes</th><td>—</td><td>A, D</td><td>B, E</td><td>A</td><td>D, B</td><td>E</td></tr>
+        </table></div>
+        <p style="margin-top:6px">Nodos con in-degree inicial = 0: solo <strong>A</strong>.</p>
       </div></div>
       <div class="step"><div class="step-icon">2</div><div class="step-content">
-        <h4>Ejecutar Kahn paso a paso</h4>
-        <p><strong>Cola: [A]</strong> → Procesar A: reducir in(D)=0, in(B)=1. Encolar D. Cola: [D].<br>
-        <strong>Cola: [D]</strong> → Procesar D: reducir in(E)=1, in(B)=0. Encolar B. Cola: [B].<br>
-        <strong>Cola: [B]</strong> → Procesar B: reducir in(C)=1, in(E)=0. Encolar E. Cola: [E].<br>
-        <strong>Cola: [E]</strong> → Procesar E: reducir in(C)=0, in(F)=0. Encolar C, F. Cola: [C, F].<br>
-        <strong>Cola: [C]</strong> → Procesar C: sin vecinos. Cola: [F].<br>
-        <strong>Cola: [F]</strong> → Procesar F: sin vecinos. Cola vacía.<br>
-        Procesados: {A, D, B, E, C, F} = 6 nodos = total de nodos.</p>
+        <h4>Ejecución de Kahn paso a paso</h4>
+        <p><strong>Inicio — Cola: [A]</strong> | Procesados: 0<br><br>
+        <strong>Iteración 1:</strong> Extraer A. Vecinos: D, B.<br>
+        → in(D): 1−1=<strong>0</strong> → encolar D. in(B): 2−1=1.<br>
+        Cola: [D] | Procesados: {A}<br><br>
+        <strong>Iteración 2:</strong> Extraer D. Vecinos: B, E.<br>
+        → in(B): 1−1=<strong>0</strong> → encolar B. in(E): 2−1=1.<br>
+        Cola: [B] | Procesados: {A,D}<br><br>
+        <strong>Iteración 3:</strong> Extraer B. Vecinos: C, E.<br>
+        → in(C): 2−1=1. in(E): 1−1=<strong>0</strong> → encolar E.<br>
+        Cola: [E] | Procesados: {A,D,B}<br><br>
+        <strong>Iteración 4:</strong> Extraer E. Vecinos: C, F.<br>
+        → in(C): 1−1=<strong>0</strong> → encolar C. in(F): 1−1=<strong>0</strong> → encolar F.<br>
+        Cola: [C,F] | Procesados: {A,D,B,E}<br><br>
+        <strong>Iteraciones 5 y 6:</strong> Extraer C (sin vecinos). Extraer F (sin vecinos).<br>
+        Cola vacía | Procesados: {A,D,B,E,C,F} = <strong>6 nodos</strong> = total V.</p>
       </div></div>
     </div>
     <div class="result-box">
       <strong>Conclusión: NO hay ciclo en este grafo.</strong><br>
-      Se han podido procesar todos los nodos → clasificación topológica válida: A → D → B → E → C → F<br><br>
-      <strong>¿Cuándo habría ciclo?</strong> Si tras vaciar la cola quedaran nodos sin procesar (in-degree &gt; 0 aún), esos nodos forman el/los ciclos. Ejemplo: si añadiéramos el arco C→B, tendríamos B→C→B (ciclo). En ese caso in(B) nunca llegaría a 0 y quedaría sin procesar.
+      Nodos procesados = 6 = V → el grafo es un DAG.<br>
+      Clasificación topológica obtenida: A → D → B → E → C → F<br><br>
+      <strong>Ejemplo con ciclo:</strong> Si añadiéramos el arco C→B, tendríamos el ciclo B→C→B. El in-degree de B ya no llegaría nunca a 0 después de procesar A y D (quedaría in(B)=1 porque C nunca se procesa). Los nodos {B, C} quedarían sin procesar → ciclo detectado entre ellos.
     </div>
   </div>
 </div>
@@ -1682,9 +1870,26 @@ función esBipartito(Grafo G):<br>
         </code></p>
       </div></div>
       <div class="step"><div class="step-icon">4</div><div class="step-content">
-        <h4>Ejemplos</h4>
-        <p><strong>Bipartito:</strong> X={A,C,E}, Y={B,D,F} con arcos A−B, A−D, C−B, C−F, E−D. Todos los arcos van de X a Y ✓<br><br>
-        <strong>No bipartito:</strong> Un triángulo A−B−C−A tiene ciclo de longitud 3 (impar). Al intentar colorear: A=0, B=1, C=0, pero C es vecino de A y ambos son 0 → conflicto ✗</p>
+        <h4>Traza del algoritmo en un ejemplo BIPARTITO</h4>
+        <p>Grafo: A−B, A−D, C−B, C−F, E−D, E−F (nodos A,B,C,D,E,F)<br><br>
+        Iniciamos en A, color[A]=0. Cola: [A].<br>
+        • Extraer A (color 0): vecinos B y D → color[B]=1, color[D]=1. Cola: [B,D].<br>
+        • Extraer B (color 1): vecinos A y C → color[A]=0 ya ≠ 1 ✓ | color[C]=0. Cola: [D,C].<br>
+        • Extraer D (color 1): vecinos A y E → color[A]=0 ≠ 1 ✓ | color[E]=0. Cola: [C,E].<br>
+        • Extraer C (color 0): vecinos B y F → color[B]=1 ≠ 0 ✓ | color[F]=1. Cola: [E,F].<br>
+        • Extraer E (color 0): vecinos D y F → color[D]=1 ≠ 0 ✓ | color[F]=1 ≠ 0 ✓.<br>
+        • Extraer F (color 1): vecinos C y E → color[C]=0 ≠ 1 ✓ | color[E]=0 ≠ 1 ✓.<br>
+        Cola vacía. <strong>Sin conflictos → ES bipartito.</strong><br>
+        X = {A, C, E} (color 0) | Y = {B, D, F} (color 1)</p>
+      </div></div>
+      <div class="step"><div class="step-icon">5</div><div class="step-content">
+        <h4>Traza en un ejemplo NO BIPARTITO</h4>
+        <p>Grafo: triángulo A−B, B−C, C−A.<br><br>
+        Iniciamos en A, color[A]=0. Cola: [A].<br>
+        • Extraer A (color 0): vecinos B y C → color[B]=1, color[C]=1. Cola: [B,C].<br>
+        • Extraer B (color 1): vecinos A y C → color[A]=0 ≠ 1 ✓ | color[C]=1 <strong>== 1</strong> ✗<br>
+        <strong>CONFLICTO: dos vecinos adyacentes (B y C) tienen el mismo color → NO es bipartito.</strong><br>
+        Hay un ciclo de longitud impar: A−B−C−A (longitud 3).</p>
       </div></div>
     </div>
     <div class="result-box">
