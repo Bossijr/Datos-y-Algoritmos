@@ -249,6 +249,113 @@ footer {
   .hero, main, .index-section { padding-left: 16px; padding-right: 16px; }
   nav { display: none; }
 }
+
+/* PROGRESS BAR */
+.progress-bar-wrap {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 10px 40px; display: flex; align-items: center; gap: 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+}
+.progress-label { color: var(--muted); white-space: nowrap; font-weight: 600; }
+.progress-track { flex: 1; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 99px; width: 0%; transition: width .5s; }
+.progress-pct { color: var(--accent3); font-weight: 700; }
+
+/* THEORY GRID */
+.theory-section { padding: 0 40px 48px; max-width: 900px; margin: 0 auto; }
+.theory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.theory-card {
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;
+  background: var(--surface); transition: border-color .2s;
+}
+.theory-card:hover { border-color: var(--accent); }
+.theory-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.theory-card-icon { font-size: 18px; }
+.theory-card-title { font-size: 13px; font-weight: 700; }
+.theory-card-body { font-size: 12px; color: var(--muted); line-height: 1.7; }
+.theory-card-body strong { color: var(--text); }
+.complexity-pill {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  font-family: 'JetBrains Mono', monospace; padding: 2px 8px;
+  border-radius: 4px; margin: 2px 2px 2px 0;
+}
+.cp-purple { background: rgba(91,71,224,0.1); color: #4535b8; border: 1px solid rgba(91,71,224,0.25); }
+.cp-orange { background: rgba(212,118,42,0.1); color: #a05018; border: 1px solid rgba(212,118,42,0.25); }
+.cp-green  { background: rgba(26,158,114,0.1); color: #127057; border: 1px solid rgba(26,158,114,0.25); }
+.cp-red    { background: rgba(192,48,48,0.08); color: #8b1a1a; border: 1px solid rgba(192,48,48,0.2); }
+
+/* BIG-O TABLE */
+.bigo-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: 'JetBrains Mono', monospace; margin: 12px 0; }
+.bigo-table th { background: var(--surface2); color: var(--muted); font-weight: 700; padding: 8px 12px; border: 1px solid var(--border); text-align: left; font-size: 11px; }
+.bigo-table td { padding: 8px 12px; border: 1px solid var(--border); background: var(--surface); }
+.bigo-table tr:hover td { background: var(--surface2); }
+.bigo-best  { color: #127057; font-weight: 700; }
+.bigo-avg   { color: #4535b8; font-weight: 700; }
+.bigo-worst { color: #8b1a1a; font-weight: 700; }
+
+/* ERRORES COMUNES */
+.error-card {
+  border: 1px solid rgba(192,48,48,0.3); border-radius: 10px;
+  background: rgba(192,48,48,0.04); padding: 14px 18px;
+  margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
+}
+.error-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.error-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+.error-text strong { color: #8b1a1a; }
+
+/* QUIZ */
+.quiz-section { padding: 0 40px 48px; max-width: 900px; margin: 0 auto; }
+.quiz-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); overflow: hidden; margin-bottom: 12px;
+}
+.quiz-q { padding: 18px 22px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--border); }
+.quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px 22px; }
+.quiz-opt {
+  padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface2); cursor: pointer; font-size: 13px;
+  font-family: 'JetBrains Mono', monospace; transition: all .15s; text-align: left;
+}
+.quiz-opt:hover { border-color: var(--accent); background: rgba(91,71,224,0.06); }
+.quiz-opt.correct { background: rgba(26,158,114,0.12); border-color: var(--accent3); color: #127057; font-weight: 700; }
+.quiz-opt.wrong   { background: rgba(192,48,48,0.08); border-color: #c03030; color: #8b1a1a; }
+.quiz-feedback { padding: 10px 22px 16px; font-size: 13px; color: var(--muted); min-height: 36px; line-height: 1.6; }
+.quiz-nav { display: flex; gap: 8px; padding: 0 22px 16px; align-items: center; }
+.quiz-score { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); margin-left: auto; font-weight: 700; }
+
+/* AI TUTOR */
+.ai-tutor-section { padding: 0 40px 48px; max-width: 900px; margin: 0 auto; }
+.ai-tutor-box {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); overflow: hidden;
+}
+.ai-tutor-header { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.ai-tutor-title { font-size: 15px; font-weight: 700; }
+.ai-tutor-sub { font-size: 12px; color: var(--muted); margin-left: auto; font-family: 'JetBrains Mono', monospace; }
+.ai-chat { max-height: 340px; overflow-y: auto; padding: 16px 22px; display: flex; flex-direction: column; gap: 10px; }
+.ai-msg { padding: 10px 14px; border-radius: 10px; font-size: 13px; line-height: 1.6; max-width: 88%; }
+.ai-msg.user { background: rgba(91,71,224,0.1); border: 1px solid rgba(91,71,224,0.2); color: #3d2db8; align-self: flex-end; }
+.ai-msg.bot  { background: var(--surface2); border: 1px solid var(--border); color: var(--text); align-self: flex-start; }
+.ai-msg.thinking { color: var(--muted); font-style: italic; }
+.ai-input-row { display: flex; gap: 8px; padding: 12px 22px 16px; border-top: 1px solid var(--border); }
+.ai-input {
+  flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface2); font-size: 13px; font-family: 'Syne', sans-serif;
+  color: var(--text); outline: none;
+}
+.ai-input:focus { border-color: var(--accent); background: var(--surface); }
+.ai-send { padding: 10px 18px; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity .15s; font-family: 'Syne', sans-serif; }
+.ai-send:hover { opacity: 0.85; }
+.ai-send:disabled { opacity: 0.4; cursor: default; }
+.ai-suggestions { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 22px 10px; }
+.ai-sug { font-size: 11px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-family: 'JetBrains Mono', monospace; color: var(--muted); transition: all .15s; }
+.ai-sug:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 600px) {
+  .progress-bar-wrap { padding: 8px 16px; }
+  .theory-section, .quiz-section, .ai-tutor-section { padding-left: 16px; padding-right: 16px; }
+  .quiz-opts { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -267,13 +374,24 @@ footer {
     <a href="#ex-heap-shapes">Montículos</a>
     <a href="#ex-avl-shapes">AVL Shapes</a>
     <a href="#ex-graph-complexity">Complejidad</a>
+    <a href="#sec-teoria" style="color:var(--accent3)">📚 Teoría</a>
+    <a href="#sec-errores" style="color:#c03030">⚠️ Errores</a>
+    <a href="#sec-quiz" style="color:var(--accent2)">🧠 Quiz</a>
+    <a href="#sec-tutor" style="color:var(--accent)">✨ Tutor IA</a>
   </nav>
 </header>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap" id="progress-bar-wrap">
+  <span class="progress-label">Progreso de estudio</span>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  <span class="progress-pct" id="progress-pct">0%</span>
+
 
 <div class="hero">
   <div class="hero-tag">Universidad de Burgos · EDA</div>
   <h1>Estructuras de Datos y Algoritmos</h1>
-  <p>Soluciones completas explicadas paso a paso. Haz clic en cada ejercicio para desplegar la solución.</p>
+  <p>Guía definitiva para el examen: soluciones paso a paso, teoría esencial, errores comunes, quiz interactivo y tutor con IA.</p>
   <div class="badges">
     <span class="badge badge-purple">Árboles AVL</span>
     <span class="badge badge-orange">Heapsort</span>
@@ -281,6 +399,8 @@ footer {
     <span class="badge badge-purple">Quicksort</span>
     <span class="badge badge-orange">Floyd-Warshall</span>
     <span class="badge badge-green">LCS · Mochila</span>
+    <span class="badge badge-purple">Dijkstra</span>
+    <span class="badge badge-orange">Quiz IA</span>
   </div>
 </div>
 
@@ -298,6 +418,11 @@ footer {
     <a class="index-card" href="#ex-heap-shapes"><div class="index-card-num">EJ 2</div><div class="index-card-title">Todos los Montículos posibles</div></a>
     <a class="index-card" href="#ex-avl-shapes"><div class="index-card-num">EJ 4b</div><div class="index-card-title">Todos los AVL con raíz ≥ 4</div></a>
     <a class="index-card" href="#ex-graph-complexity"><div class="index-card-num">EJ 5b</div><div class="index-card-title">Complejidad: Matriz vs Listas</div></a>
+    <a class="index-card" href="#ex-dijkstra" style="border-color:rgba(26,158,114,0.4)"><div class="index-card-num" style="color:var(--accent3)">EXTRA</div><div class="index-card-title">Dijkstra</div></a>
+    <a class="index-card" href="#sec-teoria" style="border-color:rgba(91,71,224,0.4)"><div class="index-card-num" style="color:var(--accent)">📚</div><div class="index-card-title">Teoría + Big-O</div></a>
+    <a class="index-card" href="#sec-errores" style="border-color:rgba(192,48,48,0.3)"><div class="index-card-num" style="color:#c03030">⚠️</div><div class="index-card-title">Errores comunes</div></a>
+    <a class="index-card" href="#sec-quiz" style="border-color:rgba(212,118,42,0.4)"><div class="index-card-num" style="color:var(--accent2)">🧠</div><div class="index-card-title">Quiz autoevaluación</div></a>
+    <a class="index-card" href="#sec-tutor" style="border-color:rgba(91,71,224,0.5);background:rgba(91,71,224,0.04)"><div class="index-card-num" style="color:var(--accent)">✨</div><div class="index-card-title">Tutor con IA</div></a>
   </div>
 </div>
 
@@ -1440,9 +1565,265 @@ footer {
   </div>
 </div>
 
+<!-- ===== DIJKSTRA ===== -->
+<div class="exercise" id="ex-dijkstra">
+  <div class="exercise-header" onclick="toggle(this)">
+    <span class="ex-num" style="background:rgba(26,158,114,0.12);color:var(--accent3);border-color:rgba(26,158,114,0.3)">EXTRA</span>
+    <span class="ex-title">Dijkstra — Caminos mínimos desde un origen</span>
+    <span class="ex-pts">Frecuente en examen</span>
+    <span class="ex-toggle">▾</span>
+  </div>
+  <div class="exercise-body">
+    <div class="warn-box"><strong>Enunciado ejemplo:</strong> Dado el grafo con nodos {A,B,C,D,E} y aristas ponderadas: A→B=4, A→C=2, C→B=1, B→D=5, C→D=8, C→E=10, D→E=2. Calcular Dijkstra desde A.</div>
+
+    <div class="section-label" style="margin:16px 0 10px">¿Cómo funciona Dijkstra?</div>
+    <div class="step-list">
+      <div class="step"><div class="step-icon">!</div><div class="step-content">
+        <h4>Idea central</h4>
+        <p>Dijkstra mantiene una tabla de distancias mínimas conocidas desde el origen. En cada iteración, selecciona el nodo no visitado con menor distancia, lo marca como visitado y actualiza ("relaja") las distancias de sus vecinos. <strong>Solo funciona con pesos no negativos.</strong></p>
+      </div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 10px">Tabla de ejecución paso a paso</div>
+    <div class="dp-table-wrap">
+      <table class="dp" style="min-width:580px;font-size:12px">
+        <tr><th style="text-align:left;padding:8px 12px">Iteración</th><th>Nodo visitado</th><th>dist[A]</th><th>dist[B]</th><th>dist[C]</th><th>dist[D]</th><th>dist[E]</th></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">Inicio</td><td>—</td><td class="sel">0</td><td class="inf">∞</td><td class="inf">∞</td><td class="inf">∞</td><td class="inf">∞</td></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">1</td><td class="upd">A (dist=0)</td><td class="sel">0 ✓</td><td class="upd">4</td><td class="upd">2</td><td class="inf">∞</td><td class="inf">∞</td></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">2</td><td class="upd">C (dist=2)</td><td class="sel">0 ✓</td><td class="upd">3</td><td class="sel">2 ✓</td><td class="upd">10</td><td class="upd">12</td></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">3</td><td class="upd">B (dist=3)</td><td class="sel">0 ✓</td><td class="sel">3 ✓</td><td class="sel">2 ✓</td><td class="upd">8</td><td>12</td></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">4</td><td class="upd">D (dist=8)</td><td class="sel">0 ✓</td><td class="sel">3 ✓</td><td class="sel">2 ✓</td><td class="sel">8 ✓</td><td class="upd">10</td></tr>
+        <tr><td style="text-align:left;padding:8px 12px;font-weight:600">5</td><td class="upd">E (dist=10)</td><td class="sel">0 ✓</td><td class="sel">3 ✓</td><td class="sel">2 ✓</td><td class="sel">8 ✓</td><td class="sel">10 ✓</td></tr>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 10px">Explicación de cada iteración</div>
+    <div class="step-list">
+      <div class="step"><div class="step-icon">1</div><div class="step-content">
+        <h4>Visitar A (dist=0)</h4>
+        <p>A es el origen. Relajamos sus vecinos: <strong>B = 0+4 = 4</strong>, <strong>C = 0+2 = 2</strong>. Ambos mejoran respecto a ∞. A queda marcado como visitado.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">2</div><div class="step-content">
+        <h4>Visitar C (dist=2, mínimo no visitado)</h4>
+        <p>Vecinos de C: B → min(4, 2+1) = <strong>3</strong> ✓ mejora. D → min(∞, 2+8) = <strong>10</strong>. E → min(∞, 2+10) = <strong>12</strong>.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">3</div><div class="step-content">
+        <h4>Visitar B (dist=3, mínimo no visitado)</h4>
+        <p>Vecinos de B: D → min(10, 3+5) = <strong>8</strong> ✓ mejora. E no es vecino directo de B. B queda visitado.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">4</div><div class="step-content">
+        <h4>Visitar D (dist=8)</h4>
+        <p>Vecinos de D: E → min(12, 8+2) = <strong>10</strong> ✓ mejora. D queda visitado.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">5</div><div class="step-content">
+        <h4>Visitar E (dist=10) — fin</h4>
+        <p>E no tiene vecinos sin visitar. Algoritmo completado.</p>
+      </div></div>
+    </div>
+
+    <div class="result-box">
+      <strong>Distancias mínimas desde A:</strong><br>
+      A→A = 0 | A→B = 3 (ruta: A→C→B) | A→C = 2 (ruta: A→C) | A→D = 8 (ruta: A→C→B→D) | A→E = 10 (ruta: A→C→B→D→E)<br><br>
+      <strong>Complejidad:</strong> O((V + E) log V) con cola de prioridad | O(V²) con tabla simple
+    </div>
+  </div>
+</div>
+
 </main>
 
-<footer>Universidad de Burgos · Estructuras de Datos y Algoritmos · Soluciones generadas con IA</footer>
+<!-- ===== TEORÍA RÁPIDA ===== -->
+<div id="sec-teoria" class="theory-section">
+  <div class="section-label">📚 Teoría esencial — Chuleta para el examen</div>
+
+  <div class="theory-grid">
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">🌳</span><span class="theory-card-title">Árbol AVL</span></div>
+      <div class="theory-card-body">
+        BST con <strong>|FE| ≤ 1</strong> en cada nodo. FE = altura(izq) − altura(der).<br><br>
+        <strong>Rotaciones:</strong><br>
+        • LL → rotación simple derecha<br>
+        • RR → rotación simple izquierda<br>
+        • LR → doble: izq-izq, luego derecha<br>
+        • RL → doble: der-der, luego izquierda<br><br>
+        <strong>Recorridos:</strong> Inorden = ordenado ✓<br><br>
+        Complejidad: <span class="complexity-pill cp-purple">búsqueda O(log n)</span> <span class="complexity-pill cp-purple">inserción O(log n)</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">🔢</span><span class="theory-card-title">Montículo (Heap)</span></div>
+      <div class="theory-card-body">
+        Árbol binario <strong>completo</strong> con propiedad de montículo.<br>
+        • <strong>Max-heap:</strong> padre ≥ hijos (heapsort)<br>
+        • <strong>Min-heap:</strong> padre ≤ hijos (cola prioridad)<br><br>
+        <strong>Representación en array:</strong><br>
+        • Hijo izq de i → 2i+1<br>
+        • Hijo der de i → 2i+2<br>
+        • Padre de i → (i-1)/2<br><br>
+        <span class="complexity-pill cp-green">inserción O(log n)</span> <span class="complexity-pill cp-green">extraer-min O(log n)</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">⚡</span><span class="theory-card-title">Quicksort</span></div>
+      <div class="theory-card-body">
+        Divide y vencerás. Elige <strong>pivote</strong>, particiona el array (menores izq, mayores der), recursa en cada parte.<br><br>
+        Esquema Lomuto: pivot=último. i apunta al final de la zona menor. j recorre. Si A[j] ≤ pivot → swap(A[i+1], A[j]), i++.<br><br>
+        <span class="complexity-pill cp-green">mejor O(n log n)</span><br>
+        <span class="complexity-pill cp-purple">medio O(n log n)</span><br>
+        <span class="complexity-pill cp-red">peor O(n²) — array ordenado</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">📊</span><span class="theory-card-title">Heapsort</span></div>
+      <div class="theory-card-body">
+        <strong>Fase 1:</strong> construir max-heap con heapify desde n/2−1 hasta 0.<br>
+        <strong>Fase 2:</strong> extraer máximo (swap raíz↔último), reducir heap, heapify(0).<br><br>
+        Siempre O(n log n) — sin caso peor cuadrático.<br>
+        No estable. Ordenación in-place.<br><br>
+        <span class="complexity-pill cp-green">O(n log n)</span> siempre.<br>
+        Espacio extra: <span class="complexity-pill cp-green">O(1)</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">🗺️</span><span class="theory-card-title">Grafos: BFS / DFS</span></div>
+      <div class="theory-card-body">
+        <strong>BFS</strong> (cola FIFO): recorre nivel a nivel. Sirve para caminos mínimos sin pesos.<br>
+        <strong>DFS</strong> (pila/recursión): va en profundidad. Sirve para orden topológico, detección de ciclos.<br><br>
+        <strong>Orden topológico</strong> = DFS, añadir a pila al terminar cada nodo. Solo en DAGs (sin ciclos).<br><br>
+        <span class="complexity-pill cp-purple">Matriz: O(V²)</span> <span class="complexity-pill cp-green">Listas: O(V+E)</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">🛣️</span><span class="theory-card-title">Floyd-Warshall / Dijkstra</span></div>
+      <div class="theory-card-body">
+        <strong>Floyd-Warshall:</strong> todos los pares. DP con matriz D. D[i][j] = min(D[i][j], D[i][k]+D[k][j]) para cada k.<br>
+        <span class="complexity-pill cp-red">O(V³)</span><br><br>
+        <strong>Dijkstra:</strong> un origen, todos los destinos. Greedy, requiere pesos ≥ 0.<br>
+        <span class="complexity-pill cp-purple">O((V+E) log V)</span> con heap<br>
+        <span class="complexity-pill cp-orange">O(V²)</span> sin heap
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">🎒</span><span class="theory-card-title">Programación Dinámica</span></div>
+      <div class="theory-card-body">
+        Resolución de subproblemas superpuestos guardando resultados.<br><br>
+        <strong>LCS:</strong> dp[i][j] = dp[i-1][j-1]+1 si iguales, else max(dp[i-1][j], dp[i][j-1]).<br><br>
+        <strong>Mochila 0/1:</strong> dp[i][w] = max(dp[i-1][w], dp[i-1][w−wi]+vi) si wi≤w.<br><br>
+        <span class="complexity-pill cp-purple">LCS: O(mn)</span> <span class="complexity-pill cp-purple">Mochila: O(nW)</span>
+      </div>
+    </div>
+
+    <div class="theory-card">
+      <div class="theory-card-head"><span class="theory-card-icon">📈</span><span class="theory-card-title">Big-O — Tabla completa</span></div>
+      <div class="theory-card-body">
+        <table class="bigo-table" style="margin-top:4px">
+          <tr><th>Algoritmo</th><th>Mejor</th><th>Medio</th><th>Peor</th></tr>
+          <tr><td>Quicksort</td><td class="bigo-best">n log n</td><td class="bigo-avg">n log n</td><td class="bigo-worst">n²</td></tr>
+          <tr><td>Heapsort</td><td class="bigo-best">n log n</td><td class="bigo-avg">n log n</td><td class="bigo-worst">n log n</td></tr>
+          <tr><td>Mergesort</td><td class="bigo-best">n log n</td><td class="bigo-avg">n log n</td><td class="bigo-worst">n log n</td></tr>
+          <tr><td>Búsqueda AVL</td><td class="bigo-best">1</td><td class="bigo-avg">log n</td><td class="bigo-worst">log n</td></tr>
+          <tr><td>Floyd-Warshall</td><td colspan="3" class="bigo-worst" style="text-align:center">V³</td></tr>
+          <tr><td>Dijkstra (heap)</td><td colspan="3" class="bigo-avg" style="text-align:center">(V+E) log V</td></tr>
+          <tr><td>BFS / DFS</td><td colspan="3" class="bigo-best" style="text-align:center">V+E</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== ERRORES COMUNES ===== -->
+<div id="sec-errores" class="theory-section">
+  <div class="section-label">⚠️ Errores comunes en el examen — No los cometas</div>
+
+  <div class="error-card">
+    <span class="error-icon">🌳</span>
+    <div class="error-text"><strong>AVL: calcular FE al revés.</strong> FE = altura(subárbol izquierdo) − altura(subárbol derecho). Si lo inviertes, el signo de la rotación estará equivocado. El árbol está desequilibrado cuando FE = +2 o FE = −2.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🔄</span>
+    <div class="error-text"><strong>AVL: confundir LL/RR con LR/RL.</strong> LL y RR requieren una sola rotación. LR y RL requieren dos rotaciones (doble). Si el desequilibrio es en el nieto del lado contrario → rotación doble.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">📦</span>
+    <div class="error-text"><strong>Heap: olvidar el sift-down tras insertar o el sift-up tras extraer.</strong> En heapsort, tras poner el último elemento en la raíz, siempre hay que hacer sift-down para restaurar la propiedad. En inserción, el nuevo elemento sube (sift-up) comparando con su padre.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🔢</span>
+    <div class="error-text"><strong>Heapsort: comenzar heapify desde n/2 en lugar de n/2−1.</strong> Los índices van de 0 a n−1. El primer nodo interno está en posición n/2−1 (indexación 0). Empezar en n/2 es incorrecto.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">⚡</span>
+    <div class="error-text"><strong>Quicksort: confundir pivote con la posición final.</strong> Tras la partición de Lomuto, el pivote queda en su posición definitiva (se intercambia con A[i+1]). Los subarrays a ordenar NO incluyen al pivote.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🗺️</span>
+    <div class="error-text"><strong>Floyd-Warshall: olvidar inicializar la diagonal a 0 y los pesos directos.</strong> D[i][i] = 0 siempre. D[i][j] = peso de la arista si existe, ∞ si no hay arco directo. El bucle externo es sobre k (el nodo intermedio).</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🎒</span>
+    <div class="error-text"><strong>Mochila 0/1: usar un objeto más de una vez.</strong> En 0/1 cada objeto se usa 0 o 1 veces. La tabla dp va de i=1..n objetos y w=0..W capacidad. La recurrencia consulta dp[i−1][...] (fila anterior), no dp[i][...].</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🧩</span>
+    <div class="error-text"><strong>LCS: confundir la longitud con la propia subsecuencia.</strong> dp[m][n] da la longitud. Para reconstruir la subsecuencia hay que hacer backtracking desde dp[m][n] siguiendo las celdas de donde vino cada valor.</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">🛣️</span>
+    <div class="error-text"><strong>Dijkstra con pesos negativos.</strong> Dijkstra NO funciona correctamente si hay aristas con peso negativo. En ese caso usar Bellman-Ford. Dijkstra garantiza que la primera vez que visita un nodo, ya tiene la distancia mínima (solo si pesos ≥ 0).</div>
+  </div>
+  <div class="error-card">
+    <span class="error-icon">📊</span>
+    <div class="error-text"><strong>Orden topológico en grafos con ciclos.</strong> El orden topológico solo existe en DAGs (grafos dirigidos acíclicos). Si el grafo tiene ciclos, no hay orden topológico posible. DFS detecta esto: si hay una arista de vuelta (back edge), hay ciclo.</div>
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="sec-quiz" class="quiz-section">
+  <div class="section-label">🧠 Quiz de autoevaluación</div>
+  <div id="quiz-container"></div>
+  <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+    <button class="s-btn" onclick="quizReset()">↺ Reiniciar quiz</button>
+    <span id="quiz-global-score" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent3);font-weight:700;margin-left:auto"></span>
+  </div>
+</div>
+
+<!-- ===== AI TUTOR ===== -->
+<div id="sec-tutor" class="ai-tutor-section">
+  <div class="section-label">✨ Tutor con IA — Pregunta lo que no entiendas</div>
+  <div class="ai-tutor-box">
+    <div class="ai-tutor-header">
+      <span style="font-size:22px">🤖</span>
+      <div>
+        <div class="ai-tutor-title">Tutor EDA</div>
+        <div style="font-size:11px;color:var(--muted)">Especializado en Estructuras de Datos y Algoritmos</div>
+      </div>
+      <span class="ai-tutor-sub" id="tutor-status">listo</span>
+    </div>
+    <div class="ai-chat" id="ai-chat">
+      <div class="ai-msg bot">¡Hola! Soy tu tutor de EDA. Puedes preguntarme cualquier cosa sobre AVL, Heapsort, Quicksort, Floyd-Warshall, LCS, Mochila, Dijkstra, grafos... ¿Qué te genera más dudas?</div>
+    </div>
+    <div class="ai-suggestions">
+      <button class="ai-sug" onclick="suggest(this)">¿Cuándo hacer rotación doble en AVL?</button>
+      <button class="ai-sug" onclick="suggest(this)">Explícame el sift-down paso a paso</button>
+      <button class="ai-sug" onclick="suggest(this)">¿Diferencia entre BFS y DFS?</button>
+      <button class="ai-sug" onclick="suggest(this)">¿Por qué Dijkstra no funciona con pesos negativos?</button>
+      <button class="ai-sug" onclick="suggest(this)">¿Cómo reconstruir la LCS desde la tabla dp?</button>
+    </div>
+    <div class="ai-input-row">
+      <input class="ai-input" id="ai-input" type="text" placeholder="Escribe tu duda sobre EDA..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+      <button class="ai-send" id="ai-send-btn" onclick="sendMsg()">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<footer>Universidad de Burgos · Estructuras de Datos y Algoritmos · Guía definitiva · Generada con IA</footer>
 
 <script>
 function toggle(header) {
@@ -1766,6 +2147,139 @@ function del3Reset(){
   var b=document.getElementById('del3-next');b.disabled=false;b.textContent='Siguiente →';
 }
 del3Draw(0);
+
+/* ==================== PROGRESS BAR ==================== */
+(function(){
+  var exercises = document.querySelectorAll('.exercise');
+  var opened = {};
+  function updateProgress(){
+    var count = 0;
+    Object.keys(opened).forEach(function(k){ if(opened[k]) count++; });
+    var pct = Math.round(count / exercises.length * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+  exercises.forEach(function(ex){
+    var header = ex.querySelector('.exercise-header');
+    var origToggle = header.onclick;
+    header.addEventListener('click', function(){
+      opened[ex.id] = true;
+      updateProgress();
+    });
+  });
+  updateProgress();
+})();
+
+/* ==================== QUIZ ==================== */
+var QUIZ = [
+  { q: '¿Qué condición define a un árbol AVL?', opts: ['|FE| ≤ 1 en todo nodo', 'Es un árbol completo', 'Todos los nodos tienen 2 hijos', 'La altura es siempre log n'], ans: 0, exp: 'Un AVL exige que el Factor de Equilibrio (FE = altura_izq − altura_der) sea −1, 0 o +1 en cada nodo. Esto garantiza O(log n) en búsqueda, inserción y eliminación.' },
+  { q: '¿Cuál es la complejidad temporal de Heapsort en el PEOR caso?', opts: ['O(n²)', 'O(n log n)', 'O(n)', 'O(log n)'], ans: 1, exp: 'Heapsort es O(n log n) en todos los casos (mejor, medio y peor). A diferencia de Quicksort, no tiene caso cuadrático.' },
+  { q: 'En un max-heap almacenado en array con índice base 0, ¿cuál es el hijo izquierdo del nodo en posición i?', opts: ['2i', '2i+1', '2i+2', '(i-1)/2'], ans: 1, exp: 'Con índice 0: hijo izquierdo = 2i+1, hijo derecho = 2i+2, padre = (i-1)/2. Con índice 1 sería 2i y 2i+1, pero el examen suele usar índice 0.' },
+  { q: '¿En qué caso Quicksort alcanza su peor rendimiento O(n²)?', opts: ['Array completamente aleatorio', 'Array ya ordenado con pivote en extremo', 'Array con todos los elementos iguales y pivote central', 'Array de tamaño potencia de 2'], ans: 1, exp: 'Si el pivote siempre es el mínimo o máximo (p.ej. último elemento en array ordenado), la partición siempre queda 0 vs n−1 elementos, generando n llamadas recursivas de tamaño n−1, n−2... → O(n²).' },
+  { q: '¿Qué algoritmo NO funciona correctamente con aristas de peso negativo?', opts: ['Floyd-Warshall', 'Bellman-Ford', 'Dijkstra', 'BFS en grafos sin peso'], ans: 2, exp: 'Dijkstra asume que una vez visitado un nodo ya tiene la distancia mínima. Con pesos negativos podría aparecer una ruta más corta después de marcar el nodo. Floyd-Warshall y Bellman-Ford sí manejan negativos (sin ciclos negativos).' },
+  { q: '¿Cuál es la complejidad de Floyd-Warshall?', opts: ['O(V + E)', 'O(V²)', 'O(V³)', 'O(E log V)'], ans: 2, exp: 'Floyd-Warshall usa 3 bucles anidados sobre los V vértices (para cada par i,j y cada nodo intermedio k), resultando en O(V³). Calcula caminos mínimos entre todos los pares de nodos.' },
+  { q: 'En la Mochila 0/1, dp[i][w] representa:', opts: ['El peso del objeto i', 'El valor máximo usando los i primeros objetos con capacidad w', 'El número de objetos en la mochila', 'La capacidad restante tras coger i objetos'], ans: 1, exp: 'dp[i][w] = valor máximo obtenible usando los primeros i objetos con una capacidad máxima de w. La recurrencia es: dp[i][w] = max(dp[i−1][w], dp[i−1][w−wi]+vi) si wi ≤ w.' },
+  { q: '¿Qué recorrido de un BST/AVL produce los elementos en orden ascendente?', opts: ['Preorden', 'Postorden', 'Inorden', 'Por niveles (BFS)'], ans: 2, exp: 'El recorrido INORDEN (izquierda → raíz → derecha) de un BST o AVL siempre produce los elementos en orden ascendente. Es la propiedad fundamental del árbol de búsqueda.' },
+  { q: '¿Cuál es la diferencia principal entre BFS y DFS?', opts: ['BFS usa pila, DFS usa cola', 'BFS usa cola (FIFO), DFS usa pila (LIFO)', 'BFS solo funciona en grafos sin ciclos', 'DFS siempre es más rápido'], ans: 1, exp: 'BFS (Breadth-First Search) usa una cola FIFO y explora nivel a nivel, ideal para caminos mínimos sin pesos. DFS (Depth-First Search) usa una pila o recursión y va en profundidad, útil para orden topológico y detección de ciclos.' },
+  { q: 'Para construir el max-heap en Heapsort, el heapify comienza en el índice (array 0-based, tamaño n):', opts: ['n−1', 'n/2', 'n/2−1', '0'], ans: 2, exp: 'El primer nodo interno (no hoja) está en posición n/2−1 (con índice base 0). Las hojas (posiciones n/2 a n−1) ya son heaps triviales de un elemento. Se hace heapify desde n/2−1 hasta 0.' },
+];
+
+var quizState = [];
+function quizInit(){
+  quizState = QUIZ.map(function(){ return { answered: false, correct: false }; });
+  var html = '';
+  QUIZ.forEach(function(q, i){
+    html += '<div class="quiz-card" id="qc-'+i+'">';
+    html += '<div class="quiz-q"><span style="color:var(--muted);font-family:\'JetBrains Mono\',monospace;font-size:12px;margin-right:8px">P'+(i+1)+'</span>'+q.q+'</div>';
+    html += '<div class="quiz-opts">';
+    q.opts.forEach(function(o, j){
+      html += '<button class="quiz-opt" id="qo-'+i+'-'+j+'" onclick="quizAnswer('+i+','+j+')">'+o+'</button>';
+    });
+    html += '</div>';
+    html += '<div class="quiz-feedback" id="qf-'+i+'"></div>';
+    html += '</div>';
+  });
+  document.getElementById('quiz-container').innerHTML = html;
+  updateQuizScore();
+}
+function quizAnswer(qi, oi){
+  if(quizState[qi].answered) return;
+  quizState[qi].answered = true;
+  var q = QUIZ[qi];
+  var correct = oi === q.ans;
+  quizState[qi].correct = correct;
+  for(var j=0;j<q.opts.length;j++){
+    var btn = document.getElementById('qo-'+qi+'-'+j);
+    if(j===q.ans) btn.classList.add('correct');
+    else if(j===oi && !correct) btn.classList.add('wrong');
+    btn.disabled = true;
+  }
+  document.getElementById('qf-'+qi).innerHTML = (correct?'<span style="color:var(--accent3);font-weight:700">✓ Correcto. </span>':'<span style="color:#c03030;font-weight:700">✗ Incorrecto. </span>') + q.exp;
+  updateQuizScore();
+}
+function updateQuizScore(){
+  var answered = quizState.filter(function(s){ return s.answered; }).length;
+  var correct = quizState.filter(function(s){ return s.correct; }).length;
+  var el = document.getElementById('quiz-global-score');
+  if(answered === 0){ el.textContent = ''; return; }
+  el.textContent = correct + ' / ' + answered + ' correctas';
+  if(answered === QUIZ.length) el.textContent += ' — ' + (correct===QUIZ.length ? '🏆 Perfecto!' : correct>=8 ? '🎉 Muy bien!' : correct>=6 ? '📚 Repasa un poco más' : '💪 Sigue practicando');
+}
+function quizReset(){ quizInit(); }
+quizInit();
+
+/* ==================== AI TUTOR ==================== */
+var chatHistory = [];
+var SYSTEM_PROMPT = 'Eres un tutor especializado en Estructuras de Datos y Algoritmos (EDA) de la Universidad de Burgos. Respondes en español, de forma clara, concisa y pedagógica. Te centras exclusivamente en: Árboles AVL (rotaciones, FE, recorridos, inserción, eliminación), Montículos/Heaps (min-heap, max-heap, heapsort, sift-up, sift-down), Quicksort (partición Lomuto y Hoare, pivotes, complejidad), Floyd-Warshall (DP de caminos mínimos), Dijkstra (Greedy, pesos no negativos), LCS (subsecuencia común más larga, tabla dp), Mochila 0/1 (tabla dp, backtracking), Grafos (BFS, DFS, orden topológico, representaciones). Si la pregunta no es de EDA, redirige amablemente. Usa ejemplos concretos y brevedad: máximo 250 palabras por respuesta.';
+
+function addMsg(role, text, thinking){
+  var div = document.createElement('div');
+  div.className = 'ai-msg ' + (role==='user'?'user':'bot') + (thinking?' thinking':'');
+  div.textContent = text;
+  var chat = document.getElementById('ai-chat');
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+  return div;
+}
+
+async function sendMsg(){
+  var input = document.getElementById('ai-input');
+  var text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  document.getElementById('ai-send-btn').disabled = true;
+  document.getElementById('tutor-status').textContent = 'pensando...';
+  addMsg('user', text);
+  chatHistory.push({role:'user', content:text});
+  var thinkingDiv = addMsg('bot', '⏳ Consultando...', true);
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+    var data = await resp.json();
+    var answer = (data.content||[]).map(function(c){ return c.text||''; }).join('');
+    thinkingDiv.remove();
+    chatHistory.push({role:'assistant', content:answer});
+    addMsg('bot', answer);
+  } catch(e) {
+    thinkingDiv.textContent = 'Error al conectar. Revisa tu conexión.';
+    thinkingDiv.classList.remove('thinking');
+  }
+  document.getElementById('ai-send-btn').disabled = false;
+  document.getElementById('tutor-status').textContent = 'listo';
+}
+
+function suggest(btn){
+  document.getElementById('ai-input').value = btn.textContent;
+  sendMsg();
+}
 </script>
 </body>
 </html>
