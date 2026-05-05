@@ -204,6 +204,7 @@ table.dp td.inf { color: var(--muted); }
 /* SVG TREE */
 .tree-wrap { overflow-x: auto; margin: 16px 0; }
 svg.tree text { font-family: 'JetBrains Mono', monospace; }
+svg.tree { overflow: visible; }
 
 /* INTERACTIVE STEPPER */
 .stepper { margin: 16px 0; }
@@ -322,7 +323,7 @@ footer {
     <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">El recorrido por niveles se lee fila a fila de arriba abajo. Así queda el árbol:</p>
     <div class="warn-box" style="font-size:12px;margin-bottom:8px">⚠️ <strong>¡Atención!</strong> El nodo <strong>8 es hijo DERECHO del 3</strong> (no izquierdo), porque 8 &gt; 3. El nodo 3 no tiene hijo izquierdo en este árbol. Esto se refleja visualmente a continuación (nodo naranja a la derecha del 3).</div>
     <div class="tree-wrap">
-      <svg class="tree" width="680" height="330" viewBox="0 0 680 330">
+      <svg class="tree" width="100%" viewBox="0 0 680 355">
         <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#aaaacc" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
         <!-- edges -->
         <line x1="340" y1="60" x2="190" y2="120" stroke="#aaaacc" stroke-width="1.5"/>
@@ -385,7 +386,7 @@ footer {
         <span class="s-info" id="avl-cnt">Paso 0 / 13</span>
       </div>
       <div class="s-exp" id="avl-exp">Pulsa "Siguiente" para empezar el recorrido.</div>
-      <svg class="tree" id="avl-svg" width="680" height="320" viewBox="0 0 680 320"></svg>
+      <svg class="tree" id="avl-svg" width="100%" viewBox="0 0 680 340" style="overflow:visible"></svg>
       <div class="s-result" id="avl-res">Orden de visita: —</div>
     </div>
 
@@ -397,7 +398,7 @@ footer {
       <span class="s-info" id="ins2-cnt">Paso 0 / 9</span>
     </div>
     <div class="s-exp" id="ins2-exp">Pulsa "Siguiente" para comenzar la inserción de 47, 73 y 54.</div>
-    <svg class="tree" id="ins2-svg" width="700" height="370" viewBox="0 0 700 370" style="display:block;margin:8px 0"></svg>
+    <svg class="tree" id="ins2-svg" width="100%" viewBox="0 0 700 430" style="display:block;margin:8px 0;overflow:visible" style="display:block;margin:8px 0"></svg>
     <div class="s-result" id="ins2-res" style="margin-bottom:6px">—</div>
     <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:11px;font-family:'JetBrains Mono',monospace;margin-bottom:16px">
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#d4762a"/></svg> Nodo nuevo / insertado</span>
@@ -420,7 +421,7 @@ footer {
           Árbol reequilibrado: FE(51)=0, FE(15)=−1 ✓</p>
           <!-- Mini árbol tras insertar 47 -->
           <div class="tree-wrap" style="margin-top:10px">
-          <svg class="tree" width="420" height="210" viewBox="0 0 420 210">
+          <svg class="tree" width="100%" viewBox="0 0 420 243">
             <!-- edges -->
             <line x1="210" y1="30" x2="100" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
             <line x1="210" y1="30" x2="320" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
@@ -498,7 +499,7 @@ footer {
           El árbol sigue siendo AVL.</p>
           <!-- Mini árbol tras eliminar 67 -->
           <div class="tree-wrap" style="margin-top:10px">
-          <svg class="tree" width="380" height="190" viewBox="0 0 380 190">
+          <svg class="tree" width="100%" viewBox="0 0 380 210">
             <line x1="190" y1="30" x2="90" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
             <line x1="190" y1="30" x2="290" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
             <line x1="290" y1="95" x2="350" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
@@ -536,7 +537,7 @@ footer {
           → <strong>Sin rotación</strong>. Árbol AVL válido.</p>
           <!-- Mini árbol tras eliminar 82 -->
           <div class="tree-wrap" style="margin-top:10px">
-          <svg class="tree" width="380" height="210" viewBox="0 0 380 210">
+          <svg class="tree" width="100%" viewBox="0 0 380 233">
             <line x1="190" y1="30" x2="90" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
             <line x1="190" y1="30" x2="290" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
             <line x1="290" y1="95" x2="240" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
@@ -581,7 +582,7 @@ footer {
       <span class="s-info" id="del3-cnt">Paso 0 / 6</span>
     </div>
     <div class="s-exp" id="del3-exp">Pulsa "Siguiente" para comenzar la eliminación de 90 y 8.</div>
-    <svg class="tree" id="del3-svg" width="700" height="340" viewBox="0 0 700 340" style="display:block;margin:8px 0"></svg>
+    <svg class="tree" id="del3-svg" width="100%" viewBox="0 0 700 390" style="display:block;margin:8px 0;overflow:visible" style="display:block;margin:8px 0"></svg>
     <div class="s-result" id="del3-res" style="margin-bottom:6px">—</div>
     <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:11px;font-family:'JetBrains Mono',monospace;margin-bottom:8px">
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#c03030" stroke-dasharray="3,1" stroke="#c03030"/></svg> Nodo eliminado</span>
@@ -885,7 +886,7 @@ footer {
       <div class="step"><div class="step-icon">+17</div><div class="step-content">
         <h4>Insertar 17</h4>
         <p>Montículo vacío → 17 es la raíz. Sin sift-up necesario.</p>
-        <div class="tree-wrap"><svg class="tree" width="120" height="70" viewBox="0 0 120 70">
+        <div class="tree-wrap"><svg class="tree" width="120" height="130" viewBox="0 0 120 130">
           <circle cx="60" cy="35" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
           <text x="60" y="35" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
         </svg></div>
@@ -895,7 +896,7 @@ footer {
       <div class="step"><div class="step-icon">+52</div><div class="step-content">
         <h4>Insertar 52</h4>
         <p>Se inserta a la derecha de 17. Padre de pos 1 = pos 0 → 17. 52 ≥ 17 → <strong>sin intercambio</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="180" height="110" viewBox="0 0 180 110">
+        <div class="tree-wrap"><svg class="tree" width="180" height="130" viewBox="0 0 180 130">
           <line x1="60" y1="45" x2="40" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="60" y1="45" x2="120" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
           <circle cx="60" cy="28" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
@@ -911,7 +912,7 @@ footer {
       <div class="step"><div class="step-icon">+71</div><div class="step-content">
         <h4>Insertar 71</h4>
         <p>Se inserta en pos 2 (hijo derecho de 17). Padre = 17. 71 ≥ 17 → <strong>sin intercambio</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="200" height="110" viewBox="0 0 200 110">
+        <div class="tree-wrap"><svg class="tree" width="200" height="188" viewBox="0 0 200 188">
           <line x1="100" y1="45" x2="50" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="100" y1="45" x2="150" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
           <circle cx="100" cy="28" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
@@ -927,7 +928,7 @@ footer {
       <div class="step"><div class="step-icon">+92</div><div class="step-content">
         <h4>Insertar 92</h4>
         <p>Pos 3 = hijo izquierdo de 52. Padre = 52. 92 ≥ 52 → <strong>sin intercambio</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="260" height="160" viewBox="0 0 260 160">
+        <div class="tree-wrap"><svg class="tree" width="260" height="188" viewBox="0 0 260 188">
           <line x1="130" y1="42" x2="70" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="130" y1="42" x2="190" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="70" y1="106" x2="40" y2="140" stroke="#aaaacc" stroke-width="1.5"/>
@@ -946,7 +947,7 @@ footer {
       <div class="step"><div class="step-icon">+98</div><div class="step-content">
         <h4>Insertar 98</h4>
         <p>Pos 4 = hijo derecho de 52. Padre = 52. 98 ≥ 52 → <strong>sin intercambio</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="300" height="160" viewBox="0 0 300 160">
+        <div class="tree-wrap"><svg class="tree" width="300" height="188" viewBox="0 0 300 188">
           <line x1="150" y1="42" x2="80" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="150" y1="42" x2="220" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="80" y1="106" x2="45" y2="140" stroke="#aaaacc" stroke-width="1.5"/>
@@ -969,7 +970,7 @@ footer {
         <h4>Insertar 38 — ¡Requiere sift-up!</h4>
         <p>Pos 5 = hijo izquierdo de 71. Padre = 71. <strong>38 &lt; 71 → intercambio(38, 71)</strong>.<br>
         Ahora pos 2, padre = 17. 38 ≥ 17 → <strong>fin</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="320" height="180" viewBox="0 0 320 180">
+        <div class="tree-wrap"><svg class="tree" width="320" height="196" viewBox="0 0 320 196">
           <line x1="160" y1="42" x2="85" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="160" y1="42" x2="235" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="85" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
@@ -1002,7 +1003,7 @@ footer {
       <div class="step"><div class="step-icon">−1</div><div class="step-content">
         <h4>Eliminar mínimo (17)</h4>
         <p>Extraemos la raíz (17). El último elemento (71) pasa a la raíz. Sift-down: hijos de 71 son 52 y 38. Mínimo hijo = 38. <strong>38 &lt; 71 → intercambio(71, 38)</strong>. 71 baja a pos 2, su único hijo es 71 mismo (pos 5), pero ya no tiene hijos → <strong>fin</strong>.</p>
-        <div class="tree-wrap"><svg class="tree" width="320" height="180" viewBox="0 0 320 180">
+        <div class="tree-wrap"><svg class="tree" width="320" height="196" viewBox="0 0 320 196">
           <line x1="160" y1="42" x2="85" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="160" y1="42" x2="235" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="85" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
@@ -1026,7 +1027,7 @@ footer {
       <div class="step"><div class="step-icon">−2</div><div class="step-content">
         <h4>Eliminar mínimo (38)</h4>
         <p>Extraemos 38. El último (98) pasa a raíz. Hijos: 52(izq) y 71(der). Mínimo = 52. <strong>52 &lt; 98 → intercambio(98, 52)</strong>. 98 baja a pos 1, hijos: 92(izq). <strong>92 &lt; 98 → intercambio(98, 92)</strong>. 98 en pos 3, sin hijos → fin.</p>
-        <div class="tree-wrap"><svg class="tree" width="280" height="160" viewBox="0 0 280 160">
+        <div class="tree-wrap"><svg class="tree" width="280" height="188" viewBox="0 0 280 188">
           <line x1="140" y1="42" x2="75" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="140" y1="42" x2="205" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
           <line x1="75" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
@@ -1087,7 +1088,7 @@ footer {
     </div>
 
     <div class="section-label" style="margin:16px 0 8px">Posiciones del árbol (forma fija para n=6)</div>
-    <div class="tree-wrap"><svg class="tree" width="400" height="200" viewBox="0 0 400 200">
+    <div class="tree-wrap"><svg class="tree" width="400" height="203" viewBox="0 0 400 203">
       <line x1="200" y1="38" x2="110" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
       <line x1="200" y1="38" x2="290" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
       <line x1="110" y1="106" x2="55" y2="152" stroke="#aaaacc" stroke-width="1.5"/>
@@ -1125,7 +1126,7 @@ footer {
       <!-- Heap 1: [3,3,2,2,1,1] -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 1</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1144,7 +1145,7 @@ footer {
       <!-- Heap 2: [3,3,2,1,2,1] -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 2</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1163,7 +1164,7 @@ footer {
       <!-- Heap 3: [3,3,2,1,1,2] pos2=2, hijos pos2: pos5=2. padre pos5=pos2=2. 2<=2 OK. pos3=1,pos4=1 hijos de pos1=3, OK -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 3</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1182,7 +1183,7 @@ footer {
       <!-- Heap 4: [3,2,3,2,1,1] - pos2=3, hijo pos2: pos5=1 ≤3 OK; pos1=2 hijos pos3=2,pos4=1 ✓ -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 4</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1201,7 +1202,7 @@ footer {
       <!-- Heap 5: [3,2,3,1,2,1] -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 5</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1220,7 +1221,7 @@ footer {
       <!-- Heap 6: [3,2,3,1,1,2] pos2=3,hijo pos5=2≤3 ✓; pos1=2 hijos pos3=1,pos4=1 ✓ -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 6</div>
-        <svg width="200" height="140" viewBox="0 0 200 140">
+        <svg width="200" height="162" viewBox="0 0 200 162">
           <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1276,7 +1277,7 @@ footer {
 
     <div class="section-label" style="margin:16px 0 8px">Caso 1 — Raíz = 4 (árbol perfectamente simétrico)</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Izquierda: {1,2,3} → raíz del subárbol izq = 2. Derecha: {5,6,7} → raíz del subárbol der = 6. Es el único AVL perfecto con raíz 4.</p>
-    <div class="tree-wrap"><svg class="tree" width="440" height="200" viewBox="0 0 440 200">
+    <div class="tree-wrap"><svg class="tree" width="100%" viewBox="0 0 440 210">
       <line x1="220" y1="36" x2="110" y2="90" stroke="#aaaacc" stroke-width="1.5"/>
       <line x1="220" y1="36" x2="330" y2="90" stroke="#aaaacc" stroke-width="1.5"/>
       <line x1="110" y1="106" x2="55" y2="155" stroke="#aaaacc" stroke-width="1.5"/>
@@ -1304,7 +1305,7 @@ footer {
       <!-- AVL raíz=5, izq raíz=2, [1,_,3,_,_,4] subárbol izq completo -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">AVL con raíz=5, sub-izq raíz=2</div>
-        <svg width="260" height="195" viewBox="0 0 260 195">
+        <svg width="260" height="222" viewBox="0 0 260 222">
           <!-- raíz 5 -->
           <line x1="155" y1="36" x2="80" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="155" y1="36" x2="220" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
@@ -1328,7 +1329,7 @@ footer {
       <!-- AVL raíz=5, izq raíz=3 -->
       <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
         <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">AVL con raíz=5, sub-izq raíz=3</div>
-        <svg width="260" height="195" viewBox="0 0 260 195">
+        <svg width="260" height="222" viewBox="0 0 260 222">
           <line x1="155" y1="36" x2="80" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
           <line x1="155" y1="36" x2="220" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
           <!-- izq: 3, hijos 2(→1) y 4 -->
