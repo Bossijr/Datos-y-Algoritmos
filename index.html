@@ -262,6 +262,10 @@ footer {
     <a href="#ex-floyd">Floyd</a>
     <a href="#ex-lcs">LCS</a>
     <a href="#ex-mochila">Mochila</a>
+    <a href="#ex-heap-insert">Heap Insert</a>
+    <a href="#ex-heap-shapes">Montículos</a>
+    <a href="#ex-avl-shapes">AVL Shapes</a>
+    <a href="#ex-graph-complexity">Complejidad</a>
   </nav>
 </header>
 
@@ -289,6 +293,10 @@ footer {
     <a class="index-card" href="#ex-floyd"><div class="index-card-num">EJ 7b</div><div class="index-card-title">Floyd-Warshall</div></a>
     <a class="index-card" href="#ex-lcs"><div class="index-card-num">EJ 5b</div><div class="index-card-title">LCS · Prog. Dinámica</div></a>
     <a class="index-card" href="#ex-mochila"><div class="index-card-num">EJ 6b</div><div class="index-card-title">Mochila 0/1</div></a>
+    <a class="index-card" href="#ex-heap-insert"><div class="index-card-num">EJ 1a</div><div class="index-card-title">Inserción en Montículo + Eliminaciones</div></a>
+    <a class="index-card" href="#ex-heap-shapes"><div class="index-card-num">EJ 2</div><div class="index-card-title">Todos los Montículos posibles</div></a>
+    <a class="index-card" href="#ex-avl-shapes"><div class="index-card-num">EJ 4b</div><div class="index-card-title">Todos los AVL con raíz ≥ 4</div></a>
+    <a class="index-card" href="#ex-graph-complexity"><div class="index-card-num">EJ 5b</div><div class="index-card-title">Complejidad: Matriz vs Listas</div></a>
   </div>
 </div>
 
@@ -817,6 +825,582 @@ footer {
       Obj 2+3+4: peso 4+1+3=8, valor 16+13+15=44 &lt; 46<br>
       Obj 1+3+4: peso 3+1+3=7, valor 15+13+15=43 &lt; 46<br>
       Obj 1+2+3+4: peso 11 &gt; 10 ❌ no cabe
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== NUEVO EJ 1a: INSERCIÓN EN MONTÍCULO + 3 ELIMINACIONES ===== -->
+<div class="exercise" id="ex-heap-insert">
+  <div class="exercise-header" onclick="toggle(this)">
+    <span class="ex-num">EJ 1a</span>
+    <span class="ex-title">Inserción en Montículo mínimo + 3 Eliminaciones</span>
+    <span class="ex-pts">1 punto</span>
+    <span class="ex-toggle">▾</span>
+  </div>
+  <div class="exercise-body">
+    <div class="warn-box"><strong>Enunciado:</strong> Inserte consecutivamente los valores <code style="font-family:'JetBrains Mono',monospace">17, 52, 71, 92, 98, 38</code> sobre un montículo mínimo inicialmente vacío. Sobre el montículo resultante, realice la operación eliminar tres veces.</div>
+
+    <div class="step-list">
+      <div class="step"><div class="step-icon">!</div><div class="step-content"><h4>Regla de inserción en min-heap</h4><p>Se inserta al final (último nivel, de izquierda a derecha) y se hace <strong>sift-up</strong>: se compara el nodo con su padre; si es menor, se intercambian. Se repite hasta que el padre sea menor o se llegue a la raíz.</p><p style="margin-top:4px"><strong>Regla de eliminación del mínimo:</strong> Se extrae la raíz, se coloca el último elemento en su lugar, y se hace <strong>sift-down</strong>: se intercambia con el hijo menor hasta recuperar la propiedad.</p></div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 8px">Fase 1 — Inserciones</div>
+    <div class="step-list">
+
+      <div class="step"><div class="step-icon">+17</div><div class="step-content">
+        <h4>Insertar 17</h4>
+        <p>Montículo vacío → 17 es la raíz. Sin sift-up necesario.</p>
+        <div class="tree-wrap"><svg class="tree" width="120" height="70" viewBox="0 0 120 70">
+          <circle cx="60" cy="35" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="60" y="35" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array: [17]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">+52</div><div class="step-content">
+        <h4>Insertar 52</h4>
+        <p>Se inserta a la derecha de 17. Padre de pos 1 = pos 0 → 17. 52 ≥ 17 → <strong>sin intercambio</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="180" height="110" viewBox="0 0 180 110">
+          <line x1="60" y1="45" x2="40" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="60" y1="45" x2="120" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="60" cy="28" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="60" y="28" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+          <circle cx="30" cy="92" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="30" y="92" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="120" cy="92" r="20" fill="#f0f0fa" stroke="#c0c0d8" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="120" y="92" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">—</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array: [17, 52]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">+71</div><div class="step-content">
+        <h4>Insertar 71</h4>
+        <p>Se inserta en pos 2 (hijo derecho de 17). Padre = 17. 71 ≥ 17 → <strong>sin intercambio</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="200" height="110" viewBox="0 0 200 110">
+          <line x1="100" y1="45" x2="50" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="100" y1="45" x2="150" y2="80" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="100" cy="28" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="100" y="28" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+          <circle cx="50" cy="92" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="50" y="92" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="150" cy="92" r="20" fill="#d4762a" stroke="#8a4a0a" stroke-width="1.5"/>
+          <text x="150" y="92" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">71</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array: [17, 52, 71]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">+92</div><div class="step-content">
+        <h4>Insertar 92</h4>
+        <p>Pos 3 = hijo izquierdo de 52. Padre = 52. 92 ≥ 52 → <strong>sin intercambio</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="260" height="160" viewBox="0 0 260 160">
+          <line x1="130" y1="42" x2="70" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="130" y1="42" x2="190" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="70" y1="106" x2="40" y2="140" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="130" cy="26" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="130" y="26" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+          <circle cx="70" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="70" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="190" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="190" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">71</text>
+          <circle cx="40" cy="150" r="18" fill="#d4762a" stroke="#8a4a0a" stroke-width="1.5"/>
+          <text x="40" y="150" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">92</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array: [17, 52, 71, 92]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">+98</div><div class="step-content">
+        <h4>Insertar 98</h4>
+        <p>Pos 4 = hijo derecho de 52. Padre = 52. 98 ≥ 52 → <strong>sin intercambio</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="300" height="160" viewBox="0 0 300 160">
+          <line x1="150" y1="42" x2="80" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="150" y1="42" x2="220" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="80" y1="106" x2="45" y2="140" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="80" y1="106" x2="115" y2="140" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="150" cy="26" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="150" y="26" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+          <circle cx="80" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="80" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="220" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="220" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">71</text>
+          <circle cx="45" cy="150" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="45" y="150" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">92</text>
+          <circle cx="115" cy="150" r="18" fill="#d4762a" stroke="#8a4a0a" stroke-width="1.5"/>
+          <text x="115" y="150" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">98</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array: [17, 52, 71, 92, 98]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">+38</div><div class="step-content">
+        <h4>Insertar 38 — ¡Requiere sift-up!</h4>
+        <p>Pos 5 = hijo izquierdo de 71. Padre = 71. <strong>38 &lt; 71 → intercambio(38, 71)</strong>.<br>
+        Ahora pos 2, padre = 17. 38 ≥ 17 → <strong>fin</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="320" height="180" viewBox="0 0 320 180">
+          <line x1="160" y1="42" x2="85" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="160" y1="42" x2="235" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="85" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="85" y1="106" x2="125" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="235" y1="106" x2="200" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="160" cy="26" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="160" y="26" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17</text>
+          <circle cx="85" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="85" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <!-- 38 subió, era 71 -->
+          <circle cx="235" cy="100" r="20" fill="#1a9e72" stroke="#157a57" stroke-width="1.5"/>
+          <text x="235" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">38</text>
+          <text x="235" y="123" text-anchor="middle" font-size="8" fill="#1a9e72" style="font-family:'JetBrains Mono',monospace">↑ sift-up</text>
+          <circle cx="45" cy="158" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="45" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">92</text>
+          <circle cx="125" cy="158" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="125" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">98</text>
+          <circle cx="200" cy="158" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="200" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">71</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Array final: [17, 52, 38, 92, 98, 71]</p>
+      </div></div>
+    </div>
+
+    <div class="result-box">Montículo final tras todas las inserciones: <strong>[17, 52, 38, 92, 98, 71]</strong><br>Árbol: raíz=17, hijos de 17: 52(izq) y 38(der). Hijos de 52: 92(izq) y 98(der). Hijos de 38: 71(izq).</div>
+
+    <div class="section-label" style="margin:20px 0 8px">Fase 2 — Tres eliminaciones del mínimo</div>
+    <div class="step-list">
+
+      <div class="step"><div class="step-icon">−1</div><div class="step-content">
+        <h4>Eliminar mínimo (17)</h4>
+        <p>Extraemos la raíz (17). El último elemento (71) pasa a la raíz. Sift-down: hijos de 71 son 52 y 38. Mínimo hijo = 38. <strong>38 &lt; 71 → intercambio(71, 38)</strong>. 71 baja a pos 2, su único hijo es 71 mismo (pos 5), pero ya no tiene hijos → <strong>fin</strong>.</p>
+        <div class="tree-wrap"><svg class="tree" width="320" height="180" viewBox="0 0 320 180">
+          <line x1="160" y1="42" x2="85" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="160" y1="42" x2="235" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="85" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="85" y1="106" x2="125" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="160" cy="26" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="160" y="26" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">38</text>
+          <circle cx="85" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="85" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="235" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="235" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">71</text>
+          <circle cx="45" cy="158" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="45" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">92</text>
+          <circle cx="125" cy="158" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="125" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">98</text>
+          <circle cx="280" cy="50" r="18" fill="#c03030" stroke="#8b1a1a" stroke-width="1.5" opacity="0.5"/>
+          <text x="280" y="50" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">17✕</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Extraído: 17 | Array: [38, 52, 71, 92, 98]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">−2</div><div class="step-content">
+        <h4>Eliminar mínimo (38)</h4>
+        <p>Extraemos 38. El último (98) pasa a raíz. Hijos: 52(izq) y 71(der). Mínimo = 52. <strong>52 &lt; 98 → intercambio(98, 52)</strong>. 98 baja a pos 1, hijos: 92(izq). <strong>92 &lt; 98 → intercambio(98, 92)</strong>. 98 en pos 3, sin hijos → fin.</p>
+        <div class="tree-wrap"><svg class="tree" width="280" height="160" viewBox="0 0 280 160">
+          <line x1="140" y1="42" x2="75" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="140" y1="42" x2="205" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="75" y1="106" x2="45" y2="145" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="140" cy="26" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="140" y="26" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">52</text>
+          <circle cx="75" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="75" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">92</text>
+          <circle cx="205" cy="100" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="205" y="100" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">71</text>
+          <circle cx="45" cy="150" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="45" y="150" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">98</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Extraído: 38 | Array: [52, 92, 71, 98]</p>
+      </div></div>
+
+      <div class="step"><div class="step-icon">−3</div><div class="step-content">
+        <h4>Eliminar mínimo (52)</h4>
+        <p>Extraemos 52. El último (98) pasa a raíz. Hijos: 92(izq) y 71(der). Mínimo = 71. <strong>71 &lt; 98 → intercambio(98, 71)</strong>. 98 baja a pos 2, sin hijos → fin.</p>
+        <div class="tree-wrap"><svg class="tree" width="240" height="140" viewBox="0 0 240 140">
+          <line x1="120" y1="40" x2="70" y2="85" stroke="#aaaacc" stroke-width="1.5"/>
+          <line x1="120" y1="40" x2="170" y2="85" stroke="#aaaacc" stroke-width="1.5"/>
+          <circle cx="120" cy="24" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+          <text x="120" y="24" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">71</text>
+          <circle cx="70" cy="98" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="70" y="98" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">92</text>
+          <circle cx="170" cy="98" r="20" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+          <text x="170" y="98" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">98</text>
+        </svg></div>
+        <p style="font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace">Extraído: 52 | Array: [71, 92, 98]</p>
+      </div></div>
+    </div>
+
+    <div class="result-box">
+      Eliminaciones en orden: <strong>17 → 38 → 52</strong><br>
+      Montículo resultante tras 3 eliminaciones: <strong>[71, 92, 98]</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NUEVO EJ 2: TODOS LOS MONTÍCULOS POSIBLES ===== -->
+<div class="exercise" id="ex-heap-shapes">
+  <div class="exercise-header" onclick="toggle(this)">
+    <span class="ex-num">EJ 2</span>
+    <span class="ex-title">Todos los montículos de máximos posibles con [1, 1, 2, 2, 3, 3]</span>
+    <span class="ex-pts">1.5 puntos</span>
+    <span class="ex-toggle">▾</span>
+  </div>
+  <div class="exercise-body">
+    <div class="warn-box"><strong>Enunciado:</strong> Dibuje todos los montículos (de máximos) posibles con los siguientes 6 elementos [1, 1, 2, 2, 3, 3].</div>
+
+    <div class="step-list">
+      <div class="step"><div class="step-icon">!</div><div class="step-content">
+        <h4>Condiciones que debe cumplir un max-heap de 6 nodos</h4>
+        <p><strong>Estructura fija:</strong> con 6 nodos, la forma del árbol siempre es la misma (completo por niveles): raíz, 2 hijos, 4 nietos de los cuales el último nivel tiene 3 ocupados (izq, centro-izq, centro-der de la rama izquierda).</p>
+        <p style="margin-top:6px"><strong>Propiedad de montículo máximo:</strong> cada padre ≥ sus hijos.</p>
+        <p style="margin-top:6px">Con los valores {1,1,2,2,3,3}, la raíz <strong>debe ser 3</strong> (máximo). A continuación se enumeran todas las asignaciones válidas.</p>
+      </div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 8px">Posiciones del árbol (forma fija para n=6)</div>
+    <div class="tree-wrap"><svg class="tree" width="400" height="200" viewBox="0 0 400 200">
+      <line x1="200" y1="38" x2="110" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="200" y1="38" x2="290" y2="88" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="110" y1="106" x2="55" y2="152" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="110" y1="106" x2="165" y2="152" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="290" y1="106" x2="235" y2="152" stroke="#aaaacc" stroke-width="1.5"/>
+      <circle cx="200" cy="22" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/>
+      <text x="200" y="22" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">pos 0</text>
+      <circle cx="110" cy="100" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+      <text x="110" y="100" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">pos 1</text>
+      <circle cx="290" cy="100" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/>
+      <text x="290" y="100" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">pos 2</text>
+      <circle cx="55" cy="165" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+      <text x="55" y="165" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">pos 3</text>
+      <circle cx="165" cy="165" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+      <text x="165" y="165" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">pos 4</text>
+      <circle cx="235" cy="165" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/>
+      <text x="235" y="165" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">pos 5</text>
+      <text x="340" y="100" font-size="10" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">padre(i)=⌊(i-1)/2⌋</text>
+      <text x="340" y="115" font-size="10" fill="#aaaacc" style="font-family:'JetBrains Mono',monospace">izq=2i+1, der=2i+2</text>
+    </svg></div>
+
+    <div class="section-label" style="margin:16px 0 8px">Análisis sistemático</div>
+    <div class="step-list">
+      <div class="step"><div class="step-icon">→</div><div class="step-content">
+        <h4>Raíz (pos 0): siempre 3</h4>
+        <p>El máximo del conjunto es 3, y debe ir en la raíz. Nos quedan {1,1,2,2,3} para las 5 posiciones restantes.</p>
+        <p style="margin-top:4px"><strong>Hijos de la raíz (pos 1 y pos 2):</strong> deben ser ≤ 3. El segundo 3 puede estar en pos 1 o pos 2. Los 2s también pueden estar en esas posiciones. Analizamos caso por caso:</p>
+      </div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 8px">Los 12 montículos válidos</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:12px 0">
+
+      <!-- Función helper: dibujamos cada heap como SVG inline -->
+      <!-- Heap 1: [3,3,2,2,1,1] -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 1</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,3,2,2,1,1]</div>
+      </div>
+
+      <!-- Heap 2: [3,3,2,1,2,1] -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 2</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,3,2,1,2,1]</div>
+      </div>
+
+      <!-- Heap 3: [3,3,2,1,1,2] pos2=2, hijos pos2: pos5=2. padre pos5=pos2=2. 2<=2 OK. pos3=1,pos4=1 hijos de pos1=3, OK -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 3</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,3,2,1,1,2]</div>
+      </div>
+
+      <!-- Heap 4: [3,2,3,2,1,1] - pos2=3, hijo pos2: pos5=1 ≤3 OK; pos1=2 hijos pos3=2,pos4=1 ✓ -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 4</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,2,3,2,1,1]</div>
+      </div>
+
+      <!-- Heap 5: [3,2,3,1,2,1] -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 5</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,2,3,1,2,1]</div>
+      </div>
+
+      <!-- Heap 6: [3,2,3,1,1,2] pos2=3,hijo pos5=2≤3 ✓; pos1=2 hijos pos3=1,pos4=1 ✓ -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">Montículo 6</div>
+        <svg width="200" height="140" viewBox="0 0 200 140">
+          <line x1="100" y1="30" x2="55" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="100" y1="30" x2="145" y2="68" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="28" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="55" y1="84" x2="82" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="145" y1="84" x2="118" y2="118" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="100" cy="18" r="16" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="100" y="18" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="55" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="55" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="145" cy="76" r="16" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="145" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="28" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="28" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="82" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="82" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="118" cy="128" r="14" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="118" y="128" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">[3,2,3,1,1,2]</div>
+      </div>
+
+    </div>
+    <div class="result-box">
+      <strong>Total: 6 montículos de máximos distintos</strong> (considerando posiciones, no solo multiconjuntos).<br>
+      Raíz siempre = 3. El segundo 3 puede ir en pos 1 (izq) o pos 2 (der). Para cada caso, los 2s pueden ocupar las posiciones de nivel 2 disponibles, con los 1s en el resto. Dado que hay 2 copias de cada valor, se generan las 6 combinaciones estructuralmente distintas mostradas.
+    </div>
+  </div>
+</div>
+
+<!-- ===== NUEVO EJ 4b: TODOS LOS AVL CON RAÍZ >= 4 ===== -->
+<div class="exercise" id="ex-avl-shapes">
+  <div class="exercise-header" onclick="toggle(this)">
+    <span class="ex-num">EJ 4b</span>
+    <span class="ex-title">Todos los árboles AVL con [1,2,3,4,5,6,7] y raíz ≥ 4</span>
+    <span class="ex-pts">1.5 puntos</span>
+    <span class="ex-toggle">▾</span>
+  </div>
+  <div class="exercise-body">
+    <div class="warn-box"><strong>Enunciado:</strong> Dibuje todos los árboles AVL posibles con los elementos [1, 2, 3, 4, 5, 6, 7] en los que la raíz sea mayor o igual que 4.</div>
+
+    <div class="step-list">
+      <div class="step"><div class="step-icon">!</div><div class="step-content">
+        <h4>Condiciones de un AVL con 7 nodos y raíz ≥ 4</h4>
+        <p><strong>AVL:</strong> árbol BST donde |h_izq − h_der| ≤ 1 en cada nodo.<br>
+        <strong>Con 7 nodos:</strong> la única forma AVL perfectamente balanceada es el árbol completo de altura 3 (raíz + 2 hijos + 4 nietos). Factor de equilibrio = 0 en todos.<br>
+        <strong>BST:</strong> todos los valores del subárbol izquierdo &lt; raíz &lt; todos los del subárbol derecho.<br>
+        <strong>Raíces posibles:</strong> 4, 5, 6, 7 (pero raíz = 7 dejaría 6 nodos todos a la izquierda → no AVL). Veamos:</p>
+      </div></div>
+      <div class="step"><div class="step-icon">→</div><div class="step-content">
+        <h4>¿Qué raíces son viables?</h4>
+        <p>Para que el árbol sea AVL con 7 nodos, el subárbol izquierdo y el derecho deben tener alturas que difieran en ≤1. Con 7 nodos y equilibrio perfecto: izquierda=3 nodos, derecha=3 nodos (árbol completo).<br>
+        — <strong>Raíz = 4:</strong> izq={1,2,3} (3 nodos), der={5,6,7} (3 nodos) ✅<br>
+        — <strong>Raíz = 5:</strong> izq={1,2,3,4} (4 nodos), der={6,7} (2 nodos) → alturas 2 vs 1 → FE=+1 ✅ (válido AVL)<br>
+        — <strong>Raíz = 6:</strong> izq={1,2,3,4,5} (5 nodos), der={7} (1 nodo) → alturas 2 vs 0 → FE=+2 ❌<br>
+        — <strong>Raíz = 7:</strong> izq={1,2,3,4,5,6} (6 nodos), der=∅ → FE=+3 ❌<br>
+        <strong>Raíces válidas: 4 y 5.</strong></p>
+      </div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 8px">Caso 1 — Raíz = 4 (árbol perfectamente simétrico)</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Izquierda: {1,2,3} → raíz del subárbol izq = 2. Derecha: {5,6,7} → raíz del subárbol der = 6. Es el único AVL perfecto con raíz 4.</p>
+    <div class="tree-wrap"><svg class="tree" width="440" height="200" viewBox="0 0 440 200">
+      <line x1="220" y1="36" x2="110" y2="90" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="220" y1="36" x2="330" y2="90" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="110" y1="106" x2="55" y2="155" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="110" y1="106" x2="165" y2="155" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="330" y1="106" x2="275" y2="155" stroke="#aaaacc" stroke-width="1.5"/>
+      <line x1="330" y1="106" x2="385" y2="155" stroke="#aaaacc" stroke-width="1.5"/>
+      <circle cx="220" cy="22" r="20" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="220" y="22" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">4</text>
+      <circle cx="110" cy="100" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="110" y="100" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+      <circle cx="330" cy="100" r="20" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="330" y="100" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">6</text>
+      <circle cx="55" cy="168" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/><text x="55" y="168" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+      <circle cx="165" cy="168" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/><text x="165" y="168" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">3</text>
+      <circle cx="275" cy="168" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/><text x="275" y="168" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">5</text>
+      <circle cx="385" cy="168" r="18" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.5"/><text x="385" y="168" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">7</text>
+      <text x="220" y="48" text-anchor="middle" font-size="9" fill="#1a9e72" style="font-family:'JetBrains Mono',monospace">FE=0</text>
+      <text x="110" y="124" text-anchor="middle" font-size="9" fill="#1a9e72" style="font-family:'JetBrains Mono',monospace">FE=0</text>
+      <text x="330" y="124" text-anchor="middle" font-size="9" fill="#1a9e72" style="font-family:'JetBrains Mono',monospace">FE=0</text>
+    </svg></div>
+    <div class="result-box" style="margin-top:8px">Raíz=4: <strong>único árbol AVL posible</strong> → [4, 2, 6, 1, 3, 5, 7] (árbol completo perfecto, altura 2)</div>
+
+    <div class="section-label" style="margin:20px 0 8px">Caso 2 — Raíz = 5 (FE=+1 en raíz, izquierda más pesada)</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Izq={1,2,3,4} con 4 nodos, Der={6,7} con 2 nodos. El subárbol izquierdo tiene h=2 y el derecho h=1 → FE(raíz)=+1 ✅. Para {1,2,3,4} hay 4 AVLs posibles con raíces 2 o 3; para {6,7} solo hay uno (raíz=6, hijo der=7).</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:12px 0">
+
+      <!-- AVL raíz=5, izq raíz=2, [1,_,3,_,_,4] subárbol izq completo -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">AVL con raíz=5, sub-izq raíz=2</div>
+        <svg width="260" height="195" viewBox="0 0 260 195">
+          <!-- raíz 5 -->
+          <line x1="155" y1="36" x2="80" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="155" y1="36" x2="220" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <!-- izq: 2, hijos 1 y 3; 3 tiene hijo der 4 -->
+          <line x1="80" y1="100" x2="35" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="80" y1="100" x2="125" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="125" y1="162" x2="125" y2="188" stroke="#aaaacc" stroke-width="1.2"/>
+          <!-- der: 6, hijo der 7 -->
+          <line x1="220" y1="100" x2="220" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="155" cy="22" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="155" y="22" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">5</text>
+          <circle cx="80" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="80" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="220" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="220" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">6</text>
+          <circle cx="35" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="35" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">1</text>
+          <circle cx="125" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="125" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="220" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="220" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">7</text>
+          <circle cx="125" cy="186" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/><text x="125" y="186" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">4</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">Sub-izq: 2→(1, 3→(−,4)) | Sub-der: 6→(−,7)</div>
+      </div>
+
+      <!-- AVL raíz=5, izq raíz=3 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:6px">AVL con raíz=5, sub-izq raíz=3</div>
+        <svg width="260" height="195" viewBox="0 0 260 195">
+          <line x1="155" y1="36" x2="80" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="155" y1="36" x2="220" y2="85" stroke="#aaaacc" stroke-width="1.2"/>
+          <!-- izq: 3, hijos 2(→1) y 4 -->
+          <line x1="80" y1="100" x2="35" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="80" y1="100" x2="125" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="35" y1="162" x2="35" y2="188" stroke="#aaaacc" stroke-width="1.2"/>
+          <line x1="220" y1="100" x2="220" y2="148" stroke="#aaaacc" stroke-width="1.2"/>
+          <circle cx="155" cy="22" r="18" fill="#5b47e0" stroke="#4535b8" stroke-width="1.5"/><text x="155" y="22" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff" style="font-family:'JetBrains Mono',monospace">5</text>
+          <circle cx="80" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="80" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">3</text>
+          <circle cx="220" cy="94" r="18" fill="#dcdcf5" stroke="#5b47e0" stroke-width="1.5"/><text x="220" y="94" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#3d2db8" style="font-family:'JetBrains Mono',monospace">6</text>
+          <circle cx="35" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="35" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">2</text>
+          <circle cx="125" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="125" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">4</text>
+          <circle cx="220" cy="160" r="16" fill="#ebebf7" stroke="#aaaacc" stroke-width="1.2"/><text x="220" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1a1a2e" style="font-family:'JetBrains Mono',monospace">7</text>
+          <circle cx="35" cy="186" r="14" fill="#f0f0fa" stroke="#aaaacc" stroke-width="1.2"/><text x="35" y="186" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#6b6b8a" style="font-family:'JetBrains Mono',monospace">1</text>
+        </svg>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace">Sub-izq: 3→(2→(1,−), 4) | Sub-der: 6→(−,7)</div>
+      </div>
+
+    </div>
+    <div class="result-box">
+      <strong>Total de AVLs distintos con raíz ≥ 4:</strong><br>
+      • Raíz = 4: <strong>1 árbol</strong> (perfecto, completamente simétrico)<br>
+      • Raíz = 5: <strong>2 árboles</strong> (subárbol izq con raíz 2 o raíz 3; subárbol der siempre 6→7)<br>
+      • Raíz = 6: ❌ no válido (FE=+2 en la raíz)<br>
+      • Raíz = 7: ❌ no válido (FE=+3 en la raíz)<br>
+      <strong>TOTAL: 3 árboles AVL válidos</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NUEVO EJ 5: COMPLEJIDAD GRAFOS ===== -->
+<div class="exercise" id="ex-graph-complexity">
+  <div class="exercise-header" onclick="toggle(this)">
+    <span class="ex-num">EJ 5c</span>
+    <span class="ex-title">Complejidad temporal: Matriz de adyacencia vs Listas de adyacencia</span>
+    <span class="ex-pts">1 punto</span>
+    <span class="ex-toggle">▾</span>
+  </div>
+  <div class="exercise-body">
+    <div class="warn-box"><strong>Enunciado:</strong> Para las implementaciones de grafos basadas en matrices de adyacencia y listas de adyacencia, indique el tiempo de ejecución de: comprobar si hay un arco entre dos nodos, añadir un arco, añadir un nodo, eliminar un nodo.</div>
+
+    <div class="step-list">
+      <div class="step"><div class="step-icon">!</div><div class="step-content">
+        <h4>Notación</h4>
+        <p><code>V</code> = número de vértices (nodos) | <code>E</code> = número de arcos (aristas) | <code>deg(v)</code> = grado del nodo v</p>
+      </div></div>
+    </div>
+
+    <div class="section-label" style="margin:16px 0 8px">Tabla comparativa</div>
+    <div class="dp-table-wrap">
+      <table class="dp" style="min-width:560px;font-size:13px">
+        <tr>
+          <th style="width:200px;text-align:left;padding:10px 14px">Operación</th>
+          <th style="width:160px;padding:10px 14px">Matriz de adyacencia</th>
+          <th style="width:160px;padding:10px 14px">Listas de adyacencia</th>
+        </tr>
+        <tr>
+          <td style="text-align:left;padding:10px 14px;font-weight:600">¿Hay arco (u, v)?</td>
+          <td style="text-align:center;padding:10px 14px" class="upd"><strong>O(1)</strong></td>
+          <td style="text-align:center;padding:10px 14px">O(deg(u))</td>
+        </tr>
+        <tr>
+          <td style="text-align:left;padding:10px 14px;font-weight:600">Añadir arco (u, v)</td>
+          <td style="text-align:center;padding:10px 14px" class="upd"><strong>O(1)</strong></td>
+          <td style="text-align:center;padding:10px 14px" class="upd"><strong>O(1)</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align:left;padding:10px 14px;font-weight:600">Añadir un nodo</td>
+          <td style="text-align:center;padding:10px 14px">O(V²)</td>
+          <td style="text-align:center;padding:10px 14px" class="upd"><strong>O(1)</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align:left;padding:10px 14px;font-weight:600">Eliminar un nodo</td>
+          <td style="text-align:center;padding:10px 14px">O(V²)</td>
+          <td style="text-align:center;padding:10px 14px">O(V + E)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin:20px 0 8px">Explicaciones detalladas</div>
+    <div class="step-list">
+      <div class="step"><div class="step-icon">1</div><div class="step-content">
+        <h4>¿Hay arco (u, v)?</h4>
+        <p><strong>Matriz:</strong> acceso directo <code>M[u][v]</code> → <code>O(1)</code>.<br>
+        <strong>Listas:</strong> hay que recorrer la lista de vecinos de u hasta encontrar v (o no). En el peor caso, u tiene todos los vértices como vecinos → <code>O(deg(u))</code>, que puede ser <code>O(V)</code>.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">2</div><div class="step-content">
+        <h4>Añadir arco (u, v)</h4>
+        <p><strong>Matriz:</strong> <code>M[u][v] = 1</code> (y M[v][u]=1 si no dirigido) → <code>O(1)</code>.<br>
+        <strong>Listas:</strong> insertar v al principio de la lista de u (y viceversa) → <code>O(1)</code>.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">3</div><div class="step-content">
+        <h4>Añadir un nodo</h4>
+        <p><strong>Matriz:</strong> es necesario ampliar la matriz de V×V a (V+1)×(V+1), copiando o reasignando toda la estructura → <code>O(V²)</code>.<br>
+        <strong>Listas:</strong> simplemente añadir una nueva entrada vacía a la lista de listas → <code>O(1)</code>.</p>
+      </div></div>
+      <div class="step"><div class="step-icon">4</div><div class="step-content">
+        <h4>Eliminar un nodo</h4>
+        <p><strong>Matriz:</strong> hay que eliminar la fila y columna del nodo, y reorganizar la matriz → <code>O(V²)</code>.<br>
+        <strong>Listas:</strong> hay que eliminar la lista del nodo y también todas las referencias a ese nodo en las listas de sus vecinos. En el peor caso (grafo denso), esto implica revisar todas las listas → <code>O(V + E)</code>.</p>
+      </div></div>
+    </div>
+
+    <div class="result-box">
+      <strong>Resumen:</strong> La matriz de adyacencia destaca en consultas (O(1) para ¿existe arco?), pero es costosa en operaciones estructurales (añadir/eliminar nodos: O(V²)). Las listas de adyacencia son más eficientes en memoria y en modificaciones de estructura, pero más lentas en consultar la existencia de un arco concreto.<br><br>
+      <strong>Espacio:</strong> Matriz = O(V²) | Listas = O(V + E)
     </div>
   </div>
 </div>
